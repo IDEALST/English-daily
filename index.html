@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FAF5EE">
+<title>今天，就四个小动作</title>
+<style>
+  :root{
+    --bg:#FAF5EE;
+    --card:#FFFDF9;
+    --ink:#3D3732;
+    --sub:#7E7266;
+    --faint:#A99784;
+    --line:#EEE2D3;
+    --accent:#C0795C;
+    --accent-soft:#F7E4D9;
+    --accent-deep:#A9664C;
+    --sage:#8FA48B;
+    --sage-soft:#E8EFE3;
+    --sun:#D9A85F;
+    --sun-soft:#FBF0D8;
+    --radius:26px;
+    --shadow:0 12px 28px rgba(130,96,62,.06);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{
+    margin:0;
+    min-height:100vh;
+    background:
+      radial-gradient(820px 460px at 88% -8%, #F7E9D8 0%, rgba(247,233,216,0) 62%),
+      radial-gradient(640px 420px at -12% 18%, #EFF2E6 0%, rgba(239,242,230,0) 58%),
+      var(--bg);
+    color:var(--ink);
+    font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  button{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+  a{color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent}
+  [hidden]{display:none!important}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  .shell{max-width:460px;margin:0 auto;padding:0 16px calc(30px + env(safe-area-inset-bottom))}
+
+  /* ---------- 顶部 ---------- */
+  .hero{padding:26px 6px 18px;animation:rise .45s ease backwards}
+  .eyebrow{
+    margin:0 0 8px;
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.18em;
+    color:var(--accent);
+  }
+  .day-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+  .day-title{
+    margin:0 0 4px;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.2em;
+    color:var(--faint);
+  }
+  .hero h1{
+    margin:0;
+    font-size:clamp(24px,7vw,30px);
+    line-height:1.3;
+    font-weight:650;
+    letter-spacing:.01em;
+  }
+  .day-nav{display:flex;gap:6px;padding-top:2px}
+  .day-btn{
+    width:36px;height:36px;
+    display:grid;place-items:center;
+    font-size:17px;line-height:1;
+    color:var(--sub);
+    background:rgba(255,253,249,.85);
+    border:1px solid var(--line);
+    border-radius:50%;
+    cursor:pointer;
+  }
+  .day-btn:active{background:#FBF4EA}
+  .lede{margin:9px 0 0;font-size:13.5px;line-height:1.7;color:var(--sub)}
+  .status-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:11px}
+  .checkin{
+    padding:5px 11px;
+    font-size:12px;
+    color:#8A7A66;
+    background:#EFE6D9;
+    border-radius:999px;
+    transition:background .3s ease,color .3s ease;
+  }
+  .checkin.ok{color:#5F7358;background:#E7F0DF}
+  .theme-chip{
+    font-size:11.5px;
+    letter-spacing:.04em;
+    color:#B08A6E;
+  }
+
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px}
+  .step{
+    display:block;
+    padding:9px 4px 8px;
+    text-align:center;
+    font-size:13px;
+    color:#6E6156;
+    background:rgba(255,253,249,.72);
+    border:1px solid var(--line);
+    border-radius:14px;
+    transition:background .25s ease,border-color .25s ease,color .25s ease;
+  }
+  .step b{
+    display:block;
+    font-size:10px;
+    font-weight:600;
+    line-height:1.4;
+    letter-spacing:.08em;
+    color:var(--faint);
+  }
+  .step.done{color:#5F7358;background:var(--sage-soft);border-color:#D3DFCB}
+  .step.done b{font-size:0}
+  .step.done b::before{content:"✓";font-size:11px;color:var(--sage)}
+
+  /* ---------- 卡片 ---------- */
+  .card{
+    position:relative;
+    margin-bottom:16px;
+    padding:20px 18px 22px;
+    background:var(--card);
+    border:1px solid rgba(228,212,192,.8);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    scroll-margin-top:18px;
+    animation:rise .5s ease backwards;
+  }
+  .card:nth-of-type(1){animation-delay:.03s}
+  .card:nth-of-type(2){animation-delay:.09s}
+  .card:nth-of-type(3){animation-delay:.15s}
+  .card:nth-of-type(4){animation-delay:.21s}
+
+  .sec-head{display:flex;align-items:flex-start;gap:11px;margin-bottom:16px}
+  .num{
+    flex:0 0 auto;
+    margin-top:1px;
+    padding:5px 7px;
+    font-size:11px;
+    font-weight:700;
+    line-height:1;
+    letter-spacing:.04em;
+    color:var(--accent);
+    background:var(--accent-soft);
+    border-radius:9px;
+  }
+  .sec-head h2{margin:0;font-size:18px;font-weight:650;line-height:1.35;letter-spacing:.01em}
+  .sec-head p{margin:4px 0 0;font-size:12.5px;line-height:1.55;color:var(--sub)}
+
+  /* ---------- 单词卡 ---------- */
+  .word-stage{position:relative}
+  .spk{
+    position:absolute;top:13px;right:13px;z-index:6;
+    display:grid;place-items:center;
+    width:44px;height:44px;padding:0;
+    color:var(--accent);
+    background:rgba(255,255,255,.92);
+    border:1px solid #EBDCCB;
+    border-radius:50%;
+    box-shadow:0 4px 12px rgba(150,110,80,.08);
+    cursor:pointer;
+    transition:transform .18s ease,background .18s ease;
+  }
+  .spk:active{transform:scale(.94)}
+  .spk svg{display:block}
+
+  .flip{height:300px;perspective:1200px;cursor:pointer;border-radius:22px}
+  .flip-inner{
+    position:relative;width:100%;height:100%;
+    transform-style:preserve-3d;
+    transition:transform .55s cubic-bezier(.2,.8,.2,1);
+  }
+  .flip.flipped .flip-inner{transform:rotateY(180deg)}
+  .face{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;
+    justify-content:center;align-items:center;
+    padding:26px 24px;text-align:center;
+    border:1px solid var(--line);
+    border-radius:22px;
+    background:linear-gradient(155deg,#FFFDF9 0%,#FDF3E7 100%);
+    -webkit-backface-visibility:hidden;backface-visibility:hidden;
+  }
+  .face.back{
+    align-items:flex-start;justify-content:center;gap:8px;
+    padding:26px 24px 20px;text-align:left;overflow:auto;
+    transform:rotateY(180deg);
+    background:linear-gradient(155deg,#FFFDF9 0%,#F5EFE4 100%);
+  }
+  .flip:focus-visible{outline:none}
+  .flip:focus-visible .face{outline:2px solid var(--accent);outline-offset:3px}
+
+  .tag{
+    position:absolute;top:16px;left:18px;
+    padding:4px 10px;font-size:11px;line-height:1.4;
+    color:#A8876C;background:rgba(255,255,255,.86);
+    border:1px solid #EFE0D0;border-radius:999px;
+  }
+  .word{
+    font-family:Georgia,"Iowan Old Style","Times New Roman",serif;
+    font-size:clamp(34px,10vw,44px);
+    font-weight:600;line-height:1.12;letter-spacing:-.5px;
+    color:#38322C;word-break:break-word;
+  }
+  .phon{margin-top:9px;font-family:Georgia,"Times New Roman",serif;font-size:15px;color:#9A8B7C}
+  .hint{font-size:11.5px;letter-spacing:.04em;color:var(--faint)}
+  .front .hint{position:absolute;right:0;bottom:17px;left:0;text-align:center}
+  .back .hint{position:absolute;right:0;bottom:16px;left:0;padding:0;text-align:center}
+  .meaning{font-size:21px;font-weight:600;line-height:1.45;color:#3A332D}
+  .ex-en{
+    margin:4px 0 0;
+    font-family:Georgia,"Iowan Old Style","Times New Roman",serif;
+    font-size:15.5px;line-height:1.65;color:#4C443C;
+  }
+  .ex-cn{margin:0;font-size:13.5px;line-height:1.6;color:var(--sub)}
+
+  .word-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px}
+  .ghost{
+    min-height:44px;padding:0 14px;
+    font-size:13.5px;color:var(--sub);
+    background:#fff;border:1px solid var(--line);
+    border-radius:999px;cursor:pointer;
+  }
+  .ghost:active{background:#FBF4EA}
+  .counter{font-size:12.5px;letter-spacing:.06em;color:var(--faint)}
+  .wdots{display:flex;gap:5px;justify-content:center;margin-top:9px}
+  .wdot{width:6px;height:6px;border-radius:50%;background:#EADCCB;transition:background .25s ease}
+  .wdot.on{background:var(--accent)}
+
+  /* ---------- 反馈 ---------- */
+  .say{
+    min-height:21px;margin:12px 3px 0;
+    font-size:13px;line-height:1.6;color:var(--accent-deep);
+    opacity:0;
+  }
+  .say:empty{min-height:0;margin-top:0}
+  .say.on{opacity:1;animation:pop .28s ease}
+
+  /* ---------- 长难句 ---------- */
+  .sentence{
+    margin:2px 0 0;
+    font-family:Georgia,"Iowan Old Style","Times New Roman",serif;
+    font-size:17.5px;line-height:2.05;color:#3B342E;letter-spacing:.002em;
+  }
+  .grp{border-radius:5px;padding:1px 0}
+  .ring{
+    outline:2px solid var(--accent);outline-offset:2px;
+    border-radius:6px;
+    -webkit-box-decoration-break:clone;box-decoration-break:clone;
+  }
+  .s-part{background:#D9E7CD;padding:1px 2px;margin:0 -2px}
+  .v-part{background:#F2CFBD;padding:1px 2px;margin:0 -2px;white-space:nowrap}
+  .o-part{background:#F7E0AE;padding:1px 2px;margin:0 -2px}
+  .c-part{background:#E9DDC7;padding:1px 2px;margin:0 -2px}
+
+  .btn-row{display:flex;gap:10px;margin-top:18px}
+  .pill{
+    display:inline-flex;align-items:center;justify-content:center;
+    min-height:46px;padding:0 20px;
+    font-size:14.5px;font-weight:500;color:#6B5D51;
+    background:#fff;border:1.5px solid #E4D4C2;
+    border-radius:999px;cursor:pointer;
+    transition:background .2s ease,border-color .2s ease,color .2s ease;
+  }
+  .pill:active{transform:translateY(1px)}
+  .btn-row .pill{flex:1}
+  .pill.wide{width:100%;margin-top:12px}
+  .pill.on{color:#fff;background:var(--accent-deep);border-color:var(--accent-deep)}
+  #btn-locate.on{background:#6F8469;border-color:#6F8469}
+
+  /* ---------- 参考答案 ---------- */
+  .answer{
+    margin-top:12px;padding:14px 16px;
+    background:#FBF6EC;border:1px dashed #E7D9C6;border-radius:16px;
+    animation:rise .3s ease;
+  }
+  .ans-label{margin:0 0 6px;font-size:10.5px;font-weight:600;letter-spacing:.14em;color:#B39B84}
+  .ans-main{
+    margin:0;font-family:Georgia,"Times New Roman",serif;
+    font-size:17px;line-height:1.6;color:var(--accent-deep);
+  }
+  .ans-row{margin:3px 0;font-size:14px;line-height:1.7}
+  .ans-row b{font-weight:600;color:var(--sub);margin-right:6px}
+  .ans-row span{color:var(--ink)}
+  .dot{display:inline-block;width:7px;height:7px;margin-right:6px;border-radius:50%;vertical-align:1px}
+  .dot.s{background:var(--sage)}
+  .dot.v{background:var(--accent)}
+  .dot.o{background:var(--sun)}
+  .dot.c{background:#C9BBAA}
+  .ans-note{margin:8px 0 0;font-size:12.5px;line-height:1.65;color:var(--sub)}
+
+  /* ---------- 阅读 ---------- */
+  .passage{
+    margin:0;font-family:Georgia,"Iowan Old Style","Times New Roman",serif;
+    font-size:16.5px;line-height:1.85;color:#463E36;
+  }
+  .sent{display:block;margin:2px 0;padding:5px 8px;border-radius:10px;transition:background .3s ease,box-shadow .3s ease}
+  .sent.lit{background:#FBE6C4;box-shadow:0 0 0 1px rgba(226,186,124,.55) inset}
+  .sent.lit-soft{background:#FBF1E0}
+
+  .q-block{margin-top:14px;padding:14px 14px 15px;background:#FCF8F1;border:1px solid #F0E4D4;border-radius:18px}
+  .q-label{margin:0 0 6px;font-size:10.5px;font-weight:600;letter-spacing:.14em;color:#B39B84}
+  .question{
+    margin:0;font-family:Georgia,"Iowan Old Style","Times New Roman",serif;
+    font-size:17px;line-height:1.9;color:#3B342E;
+  }
+  .kw{
+    display:inline;margin:0 -1px;padding:1px 3px;font:inherit;color:inherit;
+    background:none;border:0;border-radius:6px;cursor:pointer;vertical-align:baseline;
+  }
+  .kw.circled{color:var(--accent-deep);outline:2px solid var(--accent);outline-offset:2px}
+  .q-hint{margin:8px 0 0;font-size:12.5px;color:var(--sub)}
+
+  .options{display:grid;gap:9px;margin-top:12px}
+  .opt{
+    display:flex;align-items:flex-start;gap:11px;width:100%;
+    padding:13px 14px;text-align:left;font-size:14.5px;line-height:1.6;color:var(--ink);
+    background:#fff;border:1.5px solid var(--line);border-radius:16px;cursor:pointer;
+    transition:background .2s ease,border-color .2s ease,opacity .2s ease;
+  }
+  .badge{
+    display:grid;place-items:center;flex:0 0 auto;
+    width:23px;height:23px;margin-top:1px;
+    font-size:11.5px;font-weight:600;color:var(--sub);
+    background:#F6EEE3;border-radius:8px;
+  }
+  .opt-text{flex:1}
+  .opt.correct{opacity:1;background:var(--sage-soft);border-color:#BFD0B6}
+  .opt.correct .badge{color:#5F7358;background:#D8E5D0}
+  .opt.wrong{opacity:1;background:#FBEDE7;border-color:#E3B7A8}
+  .opt.wrong .badge{color:#A9694F;background:#F3D9CE}
+  .trap-note{margin:10px 2px 0;font-size:12.5px;line-height:1.65;color:var(--sub)}
+
+  /* ---------- 翻译 ---------- */
+  .cn-sent{margin:2px 0 0;font-size:20px;font-weight:600;line-height:1.6;color:#3A332D}
+  .hint-box{display:flex;align-items:flex-start;gap:10px;margin-top:13px;padding:12px 14px;background:#FBF0E7;border-radius:16px}
+  .hint-tag{
+    flex:0 0 auto;padding:3px 8px;font-size:11px;font-weight:600;
+    color:var(--accent-deep);background:#fff;border-radius:7px;
+  }
+  .hint-box p{margin:0}
+  .hint-line{font-size:15px;font-weight:600;line-height:1.5;color:#6B5344}
+  .hint-sub{margin-top:3px!important;font-size:12.5px;line-height:1.65;color:var(--sub)}
+  .trans-input{
+    display:block;width:100%;min-height:88px;margin-top:12px;padding:13px 14px;
+    font-family:Georgia,"Iowan Old Style","Times New Roman",serif;
+    font-size:16px;line-height:1.7;color:var(--ink);
+    background:#fff;border:1.5px solid var(--line);border-radius:16px;
+    resize:none;transition:border-color .2s ease,box-shadow .2s ease;
+  }
+  .trans-input::placeholder{color:var(--faint)}
+  .trans-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(192,121,92,.1)}
+  .ans-en{
+    margin:0;font-family:Georgia,"Iowan Old Style","Times New Roman",serif;
+    font-size:16px;line-height:1.7;color:#3B342E;
+  }
+  .wordtip{margin:12px 0 0;font-size:12.5px;color:var(--sub)}
+
+  /* ---------- 语法便利贴 ---------- */
+  .note{
+    position:relative;
+    margin:0 0 16px;
+    padding:16px 18px;
+    background:linear-gradient(160deg,#FCF2D8 0%,#F8EACA 100%);
+    border:1px solid #EFE0BC;
+    border-radius:20px;
+    box-shadow:0 10px 24px rgba(170,135,80,.08);
+  }
+  .note::before{
+    content:"";
+    position:absolute;top:-7px;left:26px;
+    width:64px;height:14px;
+    background:rgba(255,255,255,.55);
+    border:1px solid rgba(214,193,160,.6);
+    border-radius:2px;
+    transform:rotate(-2deg);
+  }
+  .note summary{
+    display:flex;align-items:center;gap:9px;
+    cursor:pointer;list-style:none;
+  }
+  .note summary::-webkit-details-marker{display:none}
+  .note summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:8px}
+  .note-tag{
+    padding:3px 8px;font-size:10.5px;font-weight:700;letter-spacing:.1em;
+    color:#9C7632;background:rgba(255,255,255,.7);border-radius:6px;
+  }
+  .note-title{font-size:15px;font-weight:650;color:#7A5B2E}
+  .note-more{margin-left:auto;font-size:12px;color:#B99A6B}
+  .note-more::after{content:"展开"}
+  .note[open] .note-more::after{content:"收起"}
+  .note-line{margin:12px 0 0;font-size:14px;line-height:1.8;color:#6B5330}
+  .note-ex{margin:8px 0 0;font-size:13px;line-height:1.7;color:#8B7245}
+  .note-ex b{color:#6B5330;font-weight:600}
+
+  .foot{padding:8px 4px 10px;text-align:center;font-size:11.5px;letter-spacing:.04em;color:var(--faint)}
+
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @keyframes pop{from{opacity:0;transform:translateY(2px)}to{opacity:1;transform:none}}
+
+  @media (hover:hover){
+    .pill:hover{border-color:var(--accent);color:var(--accent)}
+    .pill.on:hover{color:#fff}
+    .ghost:hover{background:#FBF4EA}
+    .opt:hover{border-color:#DCC8B2}
+    .step:hover{border-color:#E2CEB8}
+    .kw:hover{background:#F7EBDE}
+    .day-btn:hover{border-color:#E2CEB8}
+  }
+  @media (max-width:350px){
+    .flip{height:286px}
+    .word{font-size:32px}
+    .meaning{font-size:19px}
+    .sentence{font-size:17px;line-height:2}
+    .hint-box{gap:8px;padding:11px 12px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{
+      animation-duration:.01ms!important;
+      animation-iteration-count:1!important;
+      transition-duration:.01ms!important;
+    }
+    .flip-inner{transition:none}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <header class="hero">
+    <p class="eyebrow">四级 · 每天一点</p>
+    <div class="day-head">
+      <div>
+        <p class="day-title" id="day-title">DAY 1</p>
+        <h1>今天，就四个小动作</h1>
+      </div>
+      <div class="day-nav">
+        <button class="day-btn" id="d-prev" type="button" aria-label="前一天">‹</button>
+        <button class="day-btn" id="d-next" type="button" aria-label="后一天">›</button>
+      </div>
+    </div>
+    <p class="lede">五个词是底线，其余算加分。做完就收工。</p>
+    <div class="status-row">
+      <span class="checkin" id="checkin">今天还差 5 个词</span>
+      <span class="theme-chip" id="day-theme"></span>
+    </div>
+    <nav class="steps" aria-label="四个模块">
+      <a class="step" href="#m-word" data-step="word"><b>01</b>单词</a>
+      <a class="step" href="#m-sentence" data-step="sentence"><b>02</b>长句</a>
+      <a class="step" href="#m-read" data-step="read"><b>03</b>阅读</a>
+      <a class="step" href="#m-trans" data-step="trans"><b>04</b>翻译</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- 01 单词卡 -->
+    <section class="card" id="m-word">
+      <div class="sec-head">
+        <span class="num">01</span>
+        <div>
+          <h2>单词卡</h2>
+          <p>点一下翻面，喇叭在右上角。</p>
+        </div>
+      </div>
+
+      <div class="word-stage">
+        <button class="spk" id="spk" type="button" aria-label="朗读这个单词和例句">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/>
+            <path d="M15.5 8.5a5 5 0 0 1 0 7"/>
+            <path d="M18 6a8.5 8.5 0 0 1 0 12"/>
+          </svg>
+        </button>
+
+        <div class="flip" id="flip" role="button" tabindex="0" aria-pressed="false" aria-label="翻转单词卡">
+          <div class="flip-inner">
+            <div class="face front" id="face-front">
+              <span class="tag" id="w-tag">食堂</span>
+              <div class="word" id="w-word" lang="en">canteen</div>
+              <div class="phon" id="w-phon" lang="en">/kænˈtiːn/</div>
+              <div class="hint">点一下，看意思</div>
+            </div>
+            <div class="face back" id="face-back" aria-hidden="true">
+              <div class="meaning" id="w-mean">n. 食堂；（学校里的）餐厅</div>
+              <p class="ex-en" id="w-en" lang="en">I grab breakfast at the canteen before the first class.</p>
+              <p class="ex-cn" id="w-cn">第一节课前我在食堂随便吃点。</p>
+              <div class="hint">再点一下，翻回去</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="word-nav">
+          <button class="ghost" id="w-prev" type="button" aria-label="上一个单词">← 上一个</button>
+          <span class="counter" id="w-count">今天碰了 0 个词</span>
+          <button class="ghost" id="w-next" type="button" aria-label="下一个单词">下一个 →</button>
+        </div>
+        <div class="wdots" id="wdots" aria-hidden="true"></div>
+      </div>
+      <p class="say" data-say="word" aria-live="polite"></p>
+    </section>
+
+    <!-- 02 长难句 -->
+    <section class="card" id="m-sentence">
+      <div class="sec-head">
+        <span class="num">02</span>
+        <div>
+          <h2>长难句</h2>
+          <p>先自己扫一眼，再点按钮对答案。</p>
+        </div>
+      </div>
+
+      <p class="sentence" id="sent" lang="en"></p>
+
+      <div class="btn-row">
+        <button class="pill" id="btn-pred" type="button" aria-pressed="false">圈谓语</button>
+        <button class="pill" id="btn-svo" type="button" aria-pressed="false">划主谓宾</button>
+      </div>
+      <p class="say" data-say="sentence" aria-live="polite"></p>
+
+      <div class="answer" id="ans-pred" hidden>
+        <p class="ans-label">参考答案 · 谓语</p>
+        <p class="ans-main" id="pred-main"></p>
+        <p class="ans-note" id="pred-note"></p>
+      </div>
+
+      <div class="answer" id="ans-svo" hidden>
+        <p class="ans-label">参考答案 · 主谓宾</p>
+        <div id="svo-rows"></div>
+        <p class="ans-note" id="svo-note"></p>
+      </div>
+
+      <p class="ans-note" id="s-cn" hidden></p>
+    </section>
+
+    <!-- 03 阅读细节 -->
+    <section class="card" id="m-read">
+      <div class="sec-head">
+        <span class="num">03</span>
+        <div>
+          <h2>阅读细节</h2>
+          <p>先圈题干，再回原文，最后选。</p>
+        </div>
+      </div>
+
+      <p class="passage" id="passage" lang="en"></p>
+
+      <div class="q-block">
+        <p class="q-label">题干</p>
+        <p class="question" id="q" lang="en"></p>
+        <p class="q-hint" id="kw-hint">先点一下题干里的词，把它圈出来。</p>
+        <button class="pill wide" id="btn-locate" type="button">回原文定位</button>
+      </div>
+      <p class="say" data-say="read" aria-live="polite"></p>
+
+      <div class="options" id="options" lang="en"></div>
+
+      <p class="trap-note" id="trap-note" hidden></p>
+    </section>
+
+    <!-- 04 翻译 -->
+    <section class="card" id="m-trans">
+      <div class="sec-head">
+        <span class="num">04</span>
+        <div>
+          <h2>翻译</h2>
+          <p>先把句子拆开，再拼成英文。</p>
+        </div>
+      </div>
+
+      <p class="cn-sent" id="trans-cn"></p>
+
+      <div class="hint-box">
+        <span class="hint-tag">先拆</span>
+        <div>
+          <p class="hint-line">谁 + 做了什么</p>
+          <p class="hint-sub" id="trans-hint"></p>
+        </div>
+      </div>
+
+      <textarea class="trans-input" id="trans-input" lang="en" rows="2" placeholder="写成一句英文…" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea>
+      <button class="pill wide" id="btn-check" type="button">对一下</button>
+      <p class="say" data-say="trans" aria-live="polite"></p>
+
+      <div class="answer" id="trans-answer" hidden>
+        <p class="ans-label">参考写法</p>
+        <p class="ans-en" id="trans-ref" lang="en"></p>
+        <p class="ans-note" id="trans-yours" hidden></p>
+        <p class="ans-note" id="trans-tip"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <details class="note" id="note">
+    <summary>
+      <span class="note-tag">今日语法便利贴</span>
+      <span class="note-title" id="note-title">主谓宾</span>
+      <span class="note-more"></span>
+    </summary>
+    <p class="note-line" id="note-line"></p>
+    <p class="note-ex" id="note-ex"></p>
+  </details>
+
+  <footer class="foot">五个词看完就算今天完成，其余随缘。</footer>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var $ = function (sel, root) { return (root || document).querySelector(sel); };
+  var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
+
+  var store = {
+    read: function (key, fallback) {
+      try {
+        var raw = window.localStorage.getItem(key);
+        return raw ? JSON.parse(raw) : fallback;
+      } catch (err) { return fallback; }
+    },
+    write: function (key, value) {
+      try { window.localStorage.setItem(key, JSON.stringify(value)); } catch (err) { /* 隐身模式照样能玩 */ }
+    }
+  };
+
+  var START_KEY = 'dsh-en-start';
+  var TOUCH_KEY = 'dsh-en-touched';
+  var DONE_KEY = 'dsh-en-modules';
+
+  var touched = store.read(TOUCH_KEY, {});   // { "1": [0,1,2] }
+  var modules = store.read(DONE_KEY, {});    // { "1": { word: true, sentence: true, ... } }
+
+  var dayToday = new Date();
+  var dayStart = new Date(dayToday.getFullYear(), dayToday.getMonth(), dayToday.getDate());
+  var startRaw = store.read(START_KEY, '');
+  var startDay = startRaw ? new Date(startRaw) : dayStart;
+  if (!startRaw || isNaN(startDay.getTime())) {
+    startDay = dayStart;
+    store.write(START_KEY, dayStart.toISOString());
+  }
+  var autoDay = Math.floor((dayStart - startDay) / 86400000) + 1;
+  autoDay = Math.min(7, Math.max(1, autoDay));
+
+  function w(word, phonetic, meaning, example_en, example_cn, life_tag) {
+    return { word: word, phonetic: phonetic, meaning: meaning, example_en: example_en, example_cn: example_cn, life_tag: life_tag };
+  }
+
+  var DAYS = [
+    {
+      day: 1,
+      theme: '食堂与早饭',
+      words: [
+        w('canteen', '/kænˈtiːn/', 'n. 食堂；（学校里的）餐厅', 'I grab breakfast at the canteen before the first class.', '第一节课前我在食堂随便吃点。', '食堂'),
+        w('grab', '/ɡræb/', 'v. 抓住；匆忙地拿/吃', "Let's grab a quick lunch between classes.", '课间我们赶紧吃个午饭。', '食堂'),
+        w('queue', '/kjuː/', 'n. 队伍；v. 排队', "There's always a long queue at the noodle window.", '面食窗口永远排着长队。', '食堂'),
+        w('tray', '/treɪ/', 'n. 托盘', 'I left my tray on the table by mistake.', '我不小心把托盘落在桌子上了。', '食堂'),
+        w('refill', '/ˌriːˈfɪl/', 'v. 续杯；重新装满', 'You can get a free refill of water here.', '这里的水可以免费续。', '食堂')
+      ],
+      long: {
+        en: 'The canteen near our dorm serves cheap noodles that students love.',
+        cn: '我们宿舍旁边的食堂卖学生很喜欢的便宜面条。',
+        segs: [['The canteen near our dorm', 's'], ['serves', 'v', 'main'], ['cheap noodles', 'o'], ['that students', 'c'], ['love', 'v', 'main']],
+        predNote: 'serves 是主句谓语；love 在定语从句里，也算谓语——两个都圈到就对了。',
+        svo: [['s', '主语', 'The canteen near our dorm'], ['v', '谓语', 'serves'], ['o', '宾语', 'cheap noodles'], ['c', '定语从句', 'that students love']],
+        svoNote: 'that students love 修饰 noodles；去掉它，主句照样成立。'
+      },
+      read: {
+        ps: [
+          'Every morning, students queue at the canteen before their first class.',
+          'The noodles there are cheap, and a bowl of soup is free with any meal.',
+          'Many students grab a tray, sit by the window, and eat in ten minutes.',
+          'The canteen closes at nine, so nobody goes there after that.'
+        ],
+        tokens: [
+          { t: 'Why', core: 1 }, { t: 'do', aux: 1 }, { t: 'students', core: 1 },
+          { t: 'queue', core: 1 }, { t: 'at the canteen', core: 1 }, { t: 'early?', core: 1 }
+        ],
+        opts: [
+          { t: 'The noodles are the cheapest on campus.', ok: 0, msg: '原文只说便宜，没跟别家比过。' },
+          { t: 'They want to finish breakfast before class.', ok: 1, msg: '对，第一句就是第一节课前排队。' },
+          { t: 'The soup is free with every meal.', ok: 0, msg: '免费汤原文有，但它回答不了「为什么早去」。' }
+        ],
+        trap: 'B 是原文第一句。C 说的事原文有，却答不了题干问的「为什么」——细节题只认问的那件事。'
+      },
+      trans: {
+        cn: '我先去食堂排队，然后端碗面坐下吃。',
+        who: '我',
+        what: '排队、端面、坐下吃',
+        when: '先……然后……',
+        ref: 'I went to the canteen first, queued for a bowl of noodles, and sat down to eat.',
+        keys: ['canteen', 'queued', 'noodles']
+      },
+      gram: {
+        title: '主谓宾',
+        line: '一句话先认三块：谁（主语）+ 做了什么（谓语）+ 对什么做的（宾语）。',
+        cn: '我在食堂吃了碗面。',
+        en: 'I had a bowl of noodles at the canteen.'
+      }
+    },
+    {
+      day: 2,
+      theme: '宿舍日常',
+      words: [
+        w('dorm', '/dɔːm/', 'n. 宿舍（dormitory 的简称）', 'My dorm is on the fifth floor.', '我的宿舍在五楼。', '宿舍'),
+        w('cozy', '/ˈkəʊzi/', 'adj. 舒适温馨的', 'Our dorm is small but cozy.', '我们宿舍不大，但挺温馨。', '宿舍'),
+        w('messy', '/ˈmesi/', 'adj. 凌乱的', 'My desk gets messy after a busy week.', '忙完一周，我的书桌就乱了。', '宿舍'),
+        w('tidy', '/ˈtaɪdi/', 'adj. 整洁的；v. 整理', 'She keeps her side of the room tidy.', '她把自己那半边房间收拾得很整齐。', '宿舍'),
+        w('noisy', '/ˈnɔɪzi/', 'adj. 吵的', 'The corridor is noisy on weekend nights.', '周末晚上走廊很吵。', '宿舍')
+      ],
+      long: {
+        en: 'Our dorm is small, but the corner by the window is very cozy.',
+        cn: '我们宿舍不大，但窗边那个角落很温馨。',
+        segs: [['Our dorm', 's'], ['is', 'v', 'main'], ['small', 'o'], ['but the corner by the window', 's'], ['is', 'v', 'main'], ['very cozy', 'o']],
+        predNote: '两句各一个谓语，都是 is。圈出两个就对了。',
+        svo: [['s', '主语', 'Our dorm'], ['v', '谓语', 'is'], ['o', '表语', 'small'], ['s', '第二句主语', 'the corner by the window'], ['v', '谓语', 'is'], ['o', '表语', 'very cozy']],
+        svoNote: '主系表：is 后面跟形容词，说的是状态，不是「做了什么」。'
+      },
+      read: {
+        ps: [
+          'Our dorm room is small, and it gets messy very fast.',
+          'My roommate keeps her desk tidy, but I usually leave my books on the bed.',
+          'On weekend nights, the corridor is noisy until midnight.',
+          'Still, the room feels cozy when we turn on the warm lamp.'
+        ],
+        tokens: [
+          { t: 'What', core: 1 }, { t: 'does', aux: 1 }, { t: 'the writer', core: 1 },
+          { t: 'say', core: 1 }, { t: 'about', core: 1 }, { t: 'the roommate?', core: 1 }
+        ],
+        opts: [
+          { t: 'Her desk is always tidy.', ok: 1, msg: '对，第二句说的。' },
+          { t: 'She leaves books on the bed.', ok: 0, msg: '把书扔在床上的是作者自己。' },
+          { t: 'She thinks the corridor is noisy.', ok: 0, msg: '原文没说室友觉得吵。' }
+        ],
+        trap: 'B 把作者的习惯安到室友身上；C 是原文没提的推测。细节题要看「谁」做「什么」。'
+      },
+      trans: {
+        cn: '我们宿舍不大，但是很温馨，只是有点乱。',
+        who: '我们宿舍',
+        what: '不大、温馨、有点乱',
+        when: '',
+        ref: 'Our dorm is small but cozy, though it is a little messy.',
+        keys: ['dorm', 'cozy', 'messy']
+      },
+      gram: {
+        title: '主系表',
+        line: '主语 + 是/觉得/变得（系动词）+ 形容词，用来说状态，不是说动作。',
+        cn: '我们宿舍不大但很温馨。',
+        en: 'Our dorm is small but cozy.'
+      }
+    },
+    {
+      day: 3,
+      theme: '刷手机',
+      words: [
+        w('scroll', '/skrəʊl/', 'v. 滑动屏幕；刷', 'I scroll short videos before I sleep.', '睡前我会刷短视频。', '刷手机'),
+        w('browse', '/braʊz/', 'v. 浏览', 'She browses the shop every night but rarely buys anything.', '她每晚逛网店，但很少买。', '刷手机'),
+        w('post', '/pəʊst/', 'v. 发布；n. 帖子', 'He posts a photo of his lunch almost every day.', '他几乎每天发午饭照片。', '刷手机'),
+        w('trend', '/trend/', 'n. 潮流；趋势', 'This dance is a big trend on campus.', '这个舞在校园里很火。', '刷手机'),
+        w('screen', '/skriːn/', 'n. 屏幕', 'I try to keep my screen time under two hours.', '我尽量把屏幕时间控制在两小时以内。', '刷手机')
+      ],
+      long: {
+        en: 'Many students scroll their phones for an hour before they finally go to sleep.',
+        cn: '很多学生要刷一小时手机才肯睡。',
+        segs: [['Many students', 's'], ['scroll', 'v', 'main'], ['their phones', 'o'], ['for an hour', 't'], ['before they finally', 'c'], ['go', 'v', 'main'], ['to sleep', '']],
+        predNote: 'scroll 是主句谓语；go 在 before 从句里，也是谓语。',
+        svo: [['s', '主语', 'Many students'], ['v', '谓语', 'scroll'], ['o', '宾语', 'their phones'], ['t', '时间', 'for an hour'], ['c', '从句', 'before they finally go to sleep']],
+        svoNote: 'for an hour 说的是时长；before... 是时间状语从句，不影响主干。'
+      },
+      read: {
+        ps: [
+          'Many students check their phones as soon as they wake up.',
+          'On average, they spend almost two hours a day on short videos.',
+          'Some of them post their own videos, but most just watch.',
+          'Teachers say a simple habit helps: put the phone in another room while studying.'
+        ],
+        tokens: [
+          { t: 'How long', core: 1 }, { t: 'do', aux: 1 }, { t: 'students', core: 1 },
+          { t: 'spend', core: 1 }, { t: 'on short videos', core: 1 }, { t: 'every day?', core: 1 }
+        ],
+        opts: [
+          { t: 'About two hours.', ok: 1, msg: '对，almost two hours。' },
+          { t: 'More than three hours.', ok: 0, msg: '原文是接近两小时，不是三小时。' },
+          { t: 'Only ten minutes.', ok: 0, msg: '十分钟是另一句话里的例子，不是平均时长。' }
+        ],
+        trap: 'B、C 都改了数字。细节题里，时间和数量最常被动。'
+      },
+      trans: {
+        cn: '这个潮流我每天都在刷，但很少发帖子。',
+        who: '我',
+        what: '每天刷这个潮流、很少发帖',
+        when: '',
+        ref: 'I scroll about this trend every day, but I rarely post anything.',
+        keys: ['scroll', 'trend', 'post']
+      },
+      gram: {
+        title: '一般现在时',
+        line: '天天都会发生的事，动词用原形；主语是 he / she / it 时，动词加 s。',
+        cn: '我每天晚上刷手机。',
+        en: 'I scroll my phone every night.'
+      }
+    },
+    {
+      day: 4,
+      theme: '网购退货',
+      words: [
+        w('order', '/ˈɔːdə(r)/', 'v. 订购；n. 订单', 'I ordered a pair of shoes online last week.', '上周我在网上订了一双鞋。', '淘宝'),
+        w('refund', '/ˈriːfʌnd/', 'n. 退款；v. 退还', 'I asked for a refund the next day.', '第二天我就申请了退款。', '淘宝'),
+        w('return', '/rɪˈtɜːn/', 'v. 退回；返回', 'It costs nothing to return the shoes.', '退这双鞋不用花钱。', '淘宝'),
+        w('wrong', '/rɒŋ/', 'adj. 错的；不合适的', 'The size was wrong, so I sent them back.', '尺码不对，我就把它们退回去了。', '淘宝'),
+        w('arrive', '/əˈraɪv/', 'v. 到达', 'The parcel arrived two days later.', '包裹两天后到了。', '快递')
+      ],
+      long: {
+        en: "The parcel arrived on Monday, but the shoes were the wrong size, so I returned them and asked for a refund.",
+        cn: '包裹周一到了，但鞋子尺码不对，所以我退了货并申请退款。',
+        segs: [['The parcel', 's'], ['arrived', 'v', 'main'], ['on Monday', 't'], ['but the shoes', 's'], ['were', 'v', 'main'], ['the wrong size', 'o'], ['so I returned them and asked for a refund', 'c']],
+        predNote: 'arrived、were 是两个主句谓语；returned、asked 在 so 从句里，这一轮先认主句这两个。',
+        svo: [['s', '主语', 'The parcel'], ['v', '谓语', 'arrived'], ['t', '时间', 'on Monday'], ['s', '第二句主语', 'the shoes'], ['v', '谓语', 'were'], ['o', '表语', 'the wrong size'], ['c', '结果', 'so I returned them and asked for a refund']],
+        svoNote: '句子有三个动作：到了、尺码不对、退了并申请退款。先找主干，再看结果。'
+      },
+      read: {
+        ps: [
+          'Last week, Li Ming ordered a pair of running shoes online.',
+          'They arrived three days later, but one shoe was a size smaller.',
+          'He returned them and got his money back in two days.',
+          'Now he always checks the size chart before he orders.'
+        ],
+        tokens: [
+          { t: 'Why', core: 1 }, { t: 'did', aux: 1 }, { t: 'Li Ming', core: 1 },
+          { t: 'return', core: 1 }, { t: 'the shoes?', core: 1 }
+        ],
+        opts: [
+          { t: 'Because the size was wrong.', ok: 1, msg: '对，第二句说小了一码。' },
+          { t: 'Because he found them too expensive.', ok: 0, msg: '原文没提价格。' },
+          { t: 'Because they arrived late.', ok: 0, msg: '三天到货，原文没嫌慢。' }
+        ],
+        trap: 'B、C 是常见的脑补：嫌贵、嫌慢。原文没写的事，就当没发生。'
+      },
+      trans: {
+        cn: '上周我下单了一双鞋，但是尺码不对，所以我申请了退款。',
+        who: '我',
+        what: '下单、尺码不对、申请退款',
+        when: '上周',
+        ref: 'Last week I ordered a pair of shoes, but the size was wrong, so I asked for a refund.',
+        keys: ['ordered', 'refund', 'wrong']
+      },
+      gram: {
+        title: '一般过去时',
+        line: '讲昨天、上周的事，动词换成过去式：order→ordered，go→went。',
+        cn: '上周我退了一双鞋。',
+        en: 'I returned a pair of shoes last week.'
+      }
+    },
+    {
+      day: 5,
+      theme: '图书馆',
+      words: [
+        w('library', '/ˈlaɪbrəri/', 'n. 图书馆', 'The library is the quietest place on campus.', '图书馆是校园里最安静的地方。', '图书馆'),
+        w('borrow', '/ˈbɒrəʊ/', 'v. 借（入）', 'Can I borrow this book for two weeks?', '这本书我能借两周吗？', '图书馆'),
+        w('overdue', '/ˌəʊvəˈdjuː/', 'adj. 过期的；逾期的', 'My book is two days overdue.', '我的书逾期两天了。', '图书馆'),
+        w('seat', '/siːt/', 'n. 座位', 'There are no seats left on the third floor.', '三楼没有空座位了。', '图书馆'),
+        w('quiet', '/ˈkwaɪət/', 'adj. 安静的', 'Please keep quiet in the reading room.', '阅览室里请保持安静。', '图书馆')
+      ],
+      long: {
+        en: 'There are only a few seats left in the library, and the quiet room closes at ten.',
+        cn: '图书馆里只剩几个空位了，安静自习室十点关门。',
+        segs: [['There are', 'v', 'main'], ['only a few seats', 's'], ['left in the library', 't'], ['and the quiet room', 's'], ['closes', 'v', 'main'], ['at ten', 't']],
+        predNote: 'There be 里的 are 也算谓语；closes 是第二个谓语。',
+        svo: [['v', '结构', 'There are'], ['s', '主语', 'only a few seats'], ['t', '地点', 'left in the library'], ['s', '第二句主语', 'the quiet room'], ['v', '谓语', 'closes'], ['t', '时间', 'at ten']],
+        svoNote: '「某地有某物」用 There is / There are，不用 have。'
+      },
+      read: {
+        ps: [
+          'The library has four floors, and the quiet room is on the top floor.',
+          'Students can borrow up to five books at a time.',
+          'Books must be returned in two weeks, or they become overdue.',
+          'On weekdays, the seats are usually full after six.'
+        ],
+        tokens: [
+          { t: 'How many', core: 1 }, { t: 'books', core: 1 }, { t: 'can', aux: 1 },
+          { t: 'a student', core: 1 }, { t: 'borrow', core: 1 }, { t: 'at one time?', core: 1 }
+        ],
+        opts: [
+          { t: 'Five.', ok: 1, msg: '对，一次最多五本。' },
+          { t: 'Two.', ok: 0, msg: '两周是还书期限，不是本数。' },
+          { t: 'As many as they want.', ok: 0, msg: '原文给了上限。' }
+        ],
+        trap: 'B 把「两周」当「两本」——数字题最爱偷换单位。'
+      },
+      trans: {
+        cn: '我想去图书馆借本书，但是已经没有座位了。',
+        who: '我',
+        what: '借书、没座位',
+        when: '',
+        ref: 'I want to go to the library to borrow a book, but there are no seats left.',
+        keys: ['library', 'borrow', 'seats']
+      },
+      gram: {
+        title: 'There be',
+        line: '「某地有某物」用 There is / There are，别用 have。',
+        cn: '图书馆三楼没有空位了。',
+        en: 'There are no seats left on the third floor.'
+      }
+    },
+    {
+      day: 6,
+      theme: '小组作业',
+      words: [
+        w('deadline', '/ˈdedlaɪn/', 'n. 截止日期；最后期限', 'The deadline for the report is Friday.', '报告的截止日期是周五。', '作业'),
+        w('group', '/ɡruːp/', 'n. 小组；群体', 'Our group meets every Tuesday.', '我们小组每周二碰头。', '作业'),
+        w('divide', '/dɪˈvaɪd/', 'v. 分配；分开', 'We divided the work into four parts.', '我们把工作分成了四份。', '作业'),
+        w('submit', '/səbˈmɪt/', 'v. 提交', 'Please submit your file before noon.', '请在中午前提交文件。', '作业'),
+        w('hurry', '/ˈhʌri/', 'v. 赶快；匆忙', 'We had to hurry to finish it.', '我们得赶紧才能做完。', '作业')
+      ],
+      long: {
+        en: 'Our group must submit the project before Friday, so we should divide the work tonight.',
+        cn: '我们小组必须在周五前提交作业，所以今晚得把活分了。',
+        segs: [['Our group', 's'], ['must submit', 'v', 'main'], ['the project', 'o'], ['before Friday', 't'], ['so we', 's'], ['should divide', 'v', 'main'], ['the work', 'o'], ['tonight', 't']],
+        predNote: 'must submit 和 should divide 都是「情态动词 + 动词原形」，各算一个谓语。',
+        svo: [['s', '主语', 'Our group'], ['v', '谓语', 'must submit'], ['o', '宾语', 'the project'], ['t', '时间', 'before Friday'], ['s', '第二句主语', 'we'], ['v', '谓语', 'should divide'], ['o', '宾语', 'the work'], ['t', '时间', 'tonight']],
+        svoNote: '情态动词后面的动词永远用原形：must submit，不是 must submits。'
+      },
+      read: {
+        ps: [
+          'Every group has to finish a report before Friday.',
+          "Tom's group divided the work into three parts.",
+          'Tom writes, Lily checks the numbers, and Ben makes the slides.',
+          'They must submit the file by noon on Friday.'
+        ],
+        tokens: [
+          { t: 'What', core: 1 }, { t: "is", aux: 1 }, { t: "Ben's job", core: 1 },
+          { t: 'in', core: 1 }, { t: 'the group?', core: 1 }
+        ],
+        opts: [
+          { t: 'He makes the slides.', ok: 1, msg: '对，第三句。' },
+          { t: 'He checks the numbers.', ok: 0, msg: '检查数字的是 Lily。' },
+          { t: 'He writes the report.', ok: 0, msg: '写报告的是 Tom。' }
+        ],
+        trap: 'B、C 把别人的活安到 Ben 身上。看「谁」做「什么」，别混。'
+      },
+      trans: {
+        cn: '我们小组把作业分了工，必须在周五前提交。',
+        who: '我们小组',
+        what: '分工、周五前提交',
+        when: '周五前',
+        ref: 'Our group divided the work, and we must submit it before Friday.',
+        keys: ['group', 'divided', 'submit']
+      },
+      gram: {
+        title: '情态动词',
+        line: 'must / should / can 后面永远跟动词原形，不加 s、不加 ed。',
+        cn: '我们必须在周五前提交。',
+        en: 'We must submit it before Friday.'
+      }
+    },
+    {
+      day: 7,
+      theme: '室友与聊天',
+      words: [
+        w('roommate', '/ˈruːmmeɪt/', 'n. 室友', 'My roommate and I share a small desk.', '我和室友共用一张小书桌。', '宿舍'),
+        w('chat', '/tʃæt/', 'v. 聊天；n. 闲谈', 'We chat for an hour before bed.', '我们睡前会聊一小时。', '聊天'),
+        w('habit', '/ˈhæbɪt/', 'n. 习惯', 'Reading before sleep is a good habit.', '睡前看书是个好习惯。', '日常'),
+        w('snack', '/snæk/', 'n. 零食', 'We always keep some snacks in the drawer.', '我们抽屉里总放着零食。', '零食'),
+        w('midnight', '/ˈmɪdnaɪt/', 'n. 午夜；半夜十二点', 'The corridor is quiet after midnight.', '过了午夜，走廊就安静了。', '作息')
+      ],
+      long: {
+        en: 'The roommate who shares the desk with me has a habit of chatting until midnight.',
+        cn: '和我共用一张书桌的室友，有聊到半夜的习惯。',
+        segs: [['The roommate who shares the desk with me', 's'], ['has', 'v', 'main'], ['a habit of chatting until midnight', 'o']],
+        predNote: 'has 是主句谓语；shares 藏在定语从句里，那是从句的谓语，先认主句这个。',
+        svo: [['s', '主语', 'The roommate'], ['c', '定语从句', 'who shares the desk with me'], ['v', '谓语', 'has'], ['o', '宾语', 'a habit of chatting until midnight']],
+        svoNote: 'who 引导的定语从句修饰 roommate；去掉从句，主句照样成立：The roommate has a habit...'
+      },
+      read: {
+        ps: [
+          'My roommate has a habit of chatting late at night.',
+          'She often brings snacks to the room and shares them with me.',
+          'On school nights, we try to stop talking before midnight.',
+          'Last week we failed, and we both fell asleep at one in the morning.'
+        ],
+        tokens: [
+          { t: 'What', core: 1 }, { t: 'do', aux: 1 }, { t: 'the two roommates', core: 1 },
+          { t: 'often do', core: 1 }, { t: 'late at night?', core: 1 }
+        ],
+        opts: [
+          { t: 'They chat and share snacks.', ok: 1, msg: '对，前两句合起来就是。' },
+          { t: 'They study together.', ok: 0, msg: '原文没提一起学习。' },
+          { t: 'They go out for food.', ok: 0, msg: '零食是在宿舍分的，不是出门吃。' }
+        ],
+        trap: 'B 凭空加，C 把「在宿舍分零食」改成「出门吃」。超出原文范围的，都不选。'
+      },
+      trans: {
+        cn: '和我共用书桌的室友，有个睡前聊天的习惯。',
+        who: '室友',
+        what: '有个习惯、睡前聊天',
+        when: '睡前',
+        ref: 'The roommate who shares the desk with me has a habit of chatting before bed.',
+        keys: ['roommate', 'habit', 'chatting']
+      },
+      gram: {
+        title: '定语从句',
+        line: '名词后面跟 who / that + 一句话，补充说明「哪一个 / 什么样的」。',
+        cn: '和我住一间的室友很会唱歌。',
+        en: 'The roommate who shares my room sings well.'
+      }
+    }
+  ];
+
+  var day = autoDay;
+  var wi = 0;
+  var located = false;
+
+  function touchList(d) {
+    return touched[String(d)] || [];
+  }
+
+  function markTouched(d, idx) {
+    var arr = touchList(d);
+    if (arr.indexOf(idx) === -1) {
+      arr.push(idx);
+      touched[String(d)] = arr;
+      store.write(TOUCH_KEY, touched);
+    }
+  }
+
+  function dayModules(d) {
+    return modules[String(d)] || {};
+  }
+
+  function markModule(d, key) {
+    var m = dayModules(d);
+    m[key] = true;
+    modules[String(d)] = m;
+    store.write(DONE_KEY, modules);
+    syncSteps();
+  }
+
+  function syncSteps() {
+    var m = dayModules(day);
+    var touchedAll = touchList(day).length >= 5;
+    var status = {
+      word: touchedAll,
+      sentence: !!m.sentence,
+      read: !!m.read,
+      trans: !!m.trans
+    };
+    $$('.step').forEach(function (el) {
+      el.classList.toggle('done', !!status[el.getAttribute('data-step')]);
+    });
+    var chip = $('#checkin');
+    if (touchedAll) {
+      chip.textContent = '今天碰了英语 ✅';
+      chip.classList.add('ok');
+    } else {
+      var left = 5 - touchList(day).length;
+      chip.textContent = '今天还差 ' + left + ' 个词';
+      chip.classList.remove('ok');
+    }
+    renderDots();
+  }
+
+  function say(key, msg) {
+    var el = document.querySelector('[data-say="' + key + '"]');
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.remove('on');
+    void el.offsetWidth;
+    el.classList.add('on');
+  }
+
+  function renderDots() {
+    var box = $('#wdots');
+    var arr = touchList(day);
+    box.innerHTML = '';
+    for (var i = 0; i < 5; i++) {
+      var dot = document.createElement('span');
+      dot.className = 'wdot' + (arr.indexOf(i) !== -1 ? ' on' : '');
+      box.appendChild(dot);
+    }
+  }
+
+  function setFlip(on) {
+    var flip = $('#flip');
+    flip.classList.toggle('flipped', on);
+    flip.setAttribute('aria-pressed', on ? 'true' : 'false');
+    $('#face-front').setAttribute('aria-hidden', on ? 'true' : 'false');
+    $('#face-back').setAttribute('aria-hidden', on ? 'false' : 'true');
+  }
+
+  function currentWord() {
+    return DAYS[day - 1].words[wi];
+  }
+
+  function renderWord() {
+    var item = currentWord();
+    $('#w-word').textContent = item.word;
+    $('#w-phon').textContent = item.phonetic;
+    $('#w-tag').textContent = item.life_tag;
+    $('#w-mean').textContent = item.meaning;
+    $('#w-en').textContent = item.example_en;
+    $('#w-cn').textContent = item.example_cn;
+    $('#w-count').textContent = '今天碰了 ' + touchList(day).length + ' 个词';
+    $('#flip').setAttribute('aria-label', '翻转单词卡：' + item.word);
+    setFlip(false);
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
+  }
+
+  function renderLong() {
+    var data = DAYS[day - 1].long;
+    var html = '';
+    data.segs.forEach(function (seg) {
+      var text = seg[0], pred = seg[2];
+      var klass = 'grp';
+      html += '<span class="' + klass + '"' + (pred ? ' data-pred="1"' : '') + '>' + text + '</span> ';
+    });
+    $('#sent').innerHTML = html.trim();
+    $('#pred-main').textContent = data.segs.filter(function (s) { return s[2]; }).map(function (s) { return s[0]; }).join('  ｜  ');
+    $('#pred-note').textContent = data.predNote;
+    $('#svo-note').textContent = data.svoNote;
+    var rows = '';
+    data.svo.forEach(function (row) {
+      rows += '<div class="ans-row"><i class="dot ' + row[0] + '"></i><b>' + row[1] + '</b><span>' + row[2] + '</span></div>';
+    });
+    $('#svo-rows').innerHTML = rows;
+    $('#s-cn').textContent = '中文意思：' + data.cn;
+    $('#ans-pred').hidden = true;
+    $('#ans-svo').hidden = true;
+    $('#s-cn').hidden = true;
+    $('#btn-pred').classList.remove('on');
+    $('#btn-svo').classList.remove('on');
+    $('#btn-pred').setAttribute('aria-pressed', 'false');
+    $('#btn-svo').setAttribute('aria-pressed', 'false');
+  }
+
+  function renderRead() {
+    var data = DAYS[day - 1].read;
+    var ph = '';
+    data.ps.forEach(function (text, i) {
+      ph += '<span class="sent" data-s="' + (i + 1) + '">' + text + '</span>';
+    });
+    $('#passage').innerHTML = ph;
+    var q = '';
+    data.tokens.forEach(function (tk) {
+      var attrs = tk.core ? ' data-core="1"' : (tk.aux ? ' data-aux="1"' : '');
+      q += '<button class="kw" type="button" aria-pressed="false"' + attrs + '>' + tk.t + '</button> ';
+    });
+    $('#q').innerHTML = q.trim();
+    var opts = '';
+    ['A', 'B', 'C'].forEach(function (letter, i) {
+      var item = data.opts[i];
+      opts += '<button class="opt" type="button" data-opt="' + letter + '" data-correct="' + (item.ok ? 1 : 0) + '" data-msg="' + item.msg + '">'
+        + '<span class="badge">' + letter + '</span>'
+        + '<span class="opt-text">' + item.t + '</span>'
+        + '</button>';
+    });
+    $('#options').innerHTML = opts;
+    $('#trap-note').textContent = data.trap;
+    $('#trap-note').hidden = true;
+    $('#kw-hint').textContent = '先点一下题干里的词，把它圈出来。';
+    var btn = $('#btn-locate');
+    btn.classList.remove('on');
+    btn.textContent = '回原文定位';
+    located = false;
+  }
+
+  function renderTrans() {
+    var data = DAYS[day - 1].trans;
+    $('#trans-cn').textContent = data.cn;
+    var hint = '谁 = ' + data.who + '<br>做了什么 = ' + data.what;
+    if (data.when) hint += '<br>时间 = ' + data.when;
+    $('#trans-hint').innerHTML = hint;
+    $('#trans-input').value = '';
+    $('#trans-ref').textContent = data.ref;
+    $('#trans-yours').hidden = true;
+    $('#trans-yours').textContent = '';
+    $('#trans-answer').hidden = true;
+    $('#btn-check').classList.remove('on');
+  }
+
+  function renderGram() {
+    var g = DAYS[day - 1].gram;
+    $('#note-title').textContent = g.title;
+    $('#note-line').textContent = g.line;
+    $('#note-ex').innerHTML = '例：' + g.cn + ' → <b>' + g.en + '</b>';
+  }
+
+  function renderDay() {
+    var data = DAYS[day - 1];
+    $('#day-title').textContent = 'DAY ' + data.day;
+    $('#day-theme').textContent = '今天：' + data.theme;
+    wi = 0;
+    renderWord();
+    renderLong();
+    renderRead();
+    renderTrans();
+    renderGram();
+    syncSteps();
+    $('#trans-input').blur();
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
+  }
+
+  /* ---------------- 单词卡 ---------------- */
+  $('#flip').addEventListener('click', function () {
+    var on = !this.classList.contains('flipped');
+    setFlip(on);
+    if (on) {
+      markTouched(day, wi);
+      syncSteps();
+      $('#w-count').textContent = '今天碰了 ' + touchList(day).length + ' 个词';
+      say('word', '背面就这些，够用了');
+    } else {
+      say('word', '翻回去，再看一眼拼写');
+    }
+  });
+
+  $('#flip').addEventListener('keydown', function (e) {
+    if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
+      this.click();
+    }
+  });
+
+  function speak() {
+    if (!('speechSynthesis' in window) || typeof window.SpeechSynthesisUtterance !== 'function') {
+      say('word', '这台浏览器不出声，看音标吧');
+      return;
+    }
+    var synth = window.speechSynthesis;
+    var item = currentWord();
+    try {
+      synth.cancel();
+      var u = new SpeechSynthesisUtterance(item.word + '. ' + item.example_en);
+      u.lang = 'en-US';
+      u.rate = 0.9;
+      u.pitch = 1;
+      var voices = synth.getVoices ? synth.getVoices() : [];
+      var pick = null;
+      for (var i = 0; i < voices.length; i++) {
+        if (/^en[-_]US/i.test(voices[i].lang)) { pick = voices[i]; break; }
+      }
+      if (!pick) {
+        for (var j = 0; j < voices.length; j++) {
+          if (/^en/i.test(voices[j].lang)) { pick = voices[j]; break; }
+        }
+      }
+      if (pick) u.voice = pick;
+      synth.speak(u);
+      say('word', '念一遍，耳朵记一下');
+    } catch (err) {
+      say('word', '这台浏览器不出声，看音标吧');
+    }
+  }
+
+  $('#spk').addEventListener('click', function (e) {
+    e.stopPropagation();
+    speak();
+  });
+
+  function moveWord(delta) {
+    wi = (wi + delta + 5) % 5;
+    renderWord();
+    say('word', '换一个，慢慢看');
+  }
+
+  $('#w-prev').addEventListener('click', function () { moveWord(-1); });
+  $('#w-next').addEventListener('click', function () { moveWord(1); });
+
+  /* ---------------- 长难句 ---------------- */
+  $('#btn-pred').addEventListener('click', function () {
+    var data = DAYS[day - 1].long;
+    var sent = $('#sent');
+    $$('.s-part,.v-part,.o-part,.c-part', sent).forEach(function (el) {
+      el.classList.remove('s-part', 'v-part', 'o-part', 'c-part');
+    });
+    $$('.ring', sent).forEach(function (el) { el.classList.remove('ring'); });
+    $$('[data-pred]', sent).forEach(function (el) { el.classList.add('ring'); });
+    data.segs.forEach(function (seg, i) {
+      var el = sent.children[i];
+      if (!el) return;
+      var cls = seg[1];
+      if (cls === 's') el.classList.add('s-part');
+      else if (cls === 'v') el.classList.add('v-part');
+      else if (cls === 'o') el.classList.add('o-part');
+      else if (cls === 'c') el.classList.add('c-part');
+    });
+    $('#ans-svo').hidden = true;
+    $('#ans-pred').hidden = false;
+    $('#s-cn').hidden = false;
+    $('#btn-svo').classList.remove('on');
+    $('#btn-svo').setAttribute('aria-pressed', 'false');
+    this.classList.add('on');
+    this.setAttribute('aria-pressed', 'true');
+    markModule(day, 'sentence');
+    say('sentence', '从句里也藏着谓语，两个都看到就对了');
+  });
+
+  $('#btn-svo').addEventListener('click', function () {
+    var sent = $('#sent');
+    $$('.ring', sent).forEach(function (el) { el.classList.remove('ring'); });
+    $$('.s-part,.v-part,.o-part,.c-part', sent).forEach(function (el) {
+      el.classList.remove('s-part', 'v-part', 'o-part', 'c-part');
+    });
+    var data = DAYS[day - 1].long;
+    data.segs.forEach(function (seg, i) {
+      var el = sent.children[i];
+      if (!el) return;
+      var cls = seg[1];
+      if (cls === 's') el.classList.add('s-part');
+      else if (cls === 'v') el.classList.add('v-part');
+      else if (cls === 'o') el.classList.add('o-part');
+      else if (cls === 'c') el.classList.add('c-part');
+    });
+    $('#ans-pred').hidden = true;
+    $('#ans-svo').hidden = false;
+    $('#s-cn').hidden = false;
+    $('#btn-pred').classList.remove('on');
+    $('#btn-pred').setAttribute('aria-pressed', 'false');
+    this.classList.add('on');
+    this.setAttribute('aria-pressed', 'true');
+    markModule(day, 'sentence');
+    say('sentence', '行，主干抓住了');
+  });
+
+  /* ---------------- 阅读细节 ---------------- */
+  function lightSource() {
+    var s1 = $('#passage [data-s="1"]');
+    var s2 = $('#passage [data-s="2"]');
+    if (s1) s1.classList.add('lit');
+    if (s2) s2.classList.add('lit-soft');
+    located = true;
+    var btn = $('#btn-locate');
+    btn.classList.add('on');
+    btn.textContent = '已定位 · 看前两句';
+    $('#kw-hint').textContent = '原文亮了，选一个。';
+  }
+
+  $('#q').addEventListener('click', function (e) {
+    var btn = e.target.closest ? e.target.closest('.kw') : null;
+    if (!btn) return;
+    var on = btn.classList.toggle('circled');
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    var n = $$('.kw.circled').length;
+    if (n > 0) {
+      $('#kw-hint').textContent = '圈住了，再点下面的按钮。';
+      say('read', n === 1 ? '圈住了，去原文找同一件事' : '够了，圈两三个就够用');
+    } else {
+      $('#kw-hint').textContent = '先点一下题干里的词，把它圈出来。';
+      say('read', '圈一下才好在原文里对上');
+    }
+  });
+
+  $('#btn-locate').addEventListener('click', function () {
+    var circled = $$('.kw.circled');
+    if (circled.length === 0) {
+      say('read', '先在题干里点一个词');
+      return;
+    }
+    var hasCore = circled.some(function (b) { return b.getAttribute('data-core') === '1'; });
+    if (!hasCore) {
+      say('read', '这只是一个助动词哦，找找动作发出者或关键名词');
+      return;
+    }
+    if (located) {
+      say('read', '就在前两句，不用再找');
+      return;
+    }
+    lightSource();
+    say('read', '原文前两句就是线索，看看时间和数量');
+    markModule(day, 'read');
+  });
+
+  $('#options').addEventListener('click', function (e) {
+    var opt = e.target.closest ? e.target.closest('.opt') : null;
+    if (!opt) return;
+    if (!located) lightSource();
+    if (opt.getAttribute('data-correct') === '1') {
+      $$('.opt', this).forEach(function (o) { o.classList.remove('wrong'); });
+      opt.classList.add('correct');
+      $('#trap-note').hidden = false;
+      say('read', opt.getAttribute('data-msg') || '看下原文那句');
+      markModule(day, 'read');
+      return;
+    }
+    $$('.opt', this).forEach(function (o) { o.classList.remove('correct'); });
+    opt.classList.add('wrong');
+    say('read', opt.getAttribute('data-msg') || '再看一眼原文');
+    window.setTimeout(function () { opt.classList.remove('wrong'); }, 1000);
+  });
+
+  /* ---------------- 翻译 ---------------- */
+  function normalize(str) {
+    return str.toLowerCase()
+      .replace(/[’‘]/g, "'")
+      .replace(/[^a-z' ]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  $('#btn-check').addEventListener('click', function () {
+    var raw = $('#trans-input').value.trim();
+    if (!raw) {
+      say('trans', '写一句再对，哪怕只有主谓。');
+      return;
+    }
+    var data = DAYS[day - 1].trans;
+    var norm = normalize(raw);
+    var parts = norm ? norm.split(' ').filter(Boolean) : [];
+    var wordsOfDay = DAYS[day - 1].words.map(function (it) { return it.word.toLowerCase(); });
+    var used = wordsOfDay.filter(function (base) {
+      var last = base.charAt(base.length - 1);
+      var forms = [base, base + 's', base + 'es', base + 'ed', base + 'd', base + 'ing', base + last + 'ed', base + last + 'ing'];
+      return forms.some(function (form) {
+        var f = form.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        return new RegExp('\\b' + f + '\\b').test(norm);
+      });
+    });
+    $('#trans-ref').textContent = data.ref;
+    $('#trans-yours').textContent = '你写的：' + raw;
+    $('#trans-yours').hidden = false;
+    $('#trans-answer').hidden = false;
+    this.classList.add('on');
+    markModule(day, 'trans');
+
+    if (parts.length < 4) {
+      say('trans', '试着把主谓宾写全：谁 + 不想做什么 + 时间');
+      return;
+    }
+    if (used.length < 2) {
+      say('trans', '意思有了，再把今天的词用上两个就更扎实');
+      return;
+    }
+    say('trans', '成了，这句能站住');
+  });
+
+  $('#trans-input').addEventListener('keydown', function (e) {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+      $('#btn-check').click();
+    }
+  });
+
+  /* ---------------- 日期 / 换天 ---------------- */
+  $('#d-prev').addEventListener('click', function () {
+    day = Math.max(1, day - 1);
+    renderDay();
+    say('word', day === autoDay ? '回到今天了' : '往前翻，不扣分');
+  });
+
+  $('#d-next').addEventListener('click', function () {
+    day = Math.min(7, day + 1);
+    renderDay();
+    say('word', day === autoDay ? '回到今天了' : '后面的日子也可以先看看');
+  });
+
+  renderDay();
+  syncSteps();
+
+  window.addEventListener('pagehide', function () {
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
+  });
+})();
+</script>
+</body>
+</html>
