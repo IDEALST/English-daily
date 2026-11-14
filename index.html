@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -71,7 +71,7 @@
   }
   .day-nav{display:flex;gap:6px;padding-top:2px}
   .day-btn{
-    width:36px;height:36px;
+    width:44px;height:44px;
     display:grid;place-items:center;
     font-size:17px;line-height:1;
     color:var(--sub);
@@ -172,7 +172,7 @@
   .spk:active{transform:scale(.94)}
   .spk svg{display:block}
 
-  .flip{height:300px;perspective:1200px;cursor:pointer;border-radius:22px}
+  .flip{height:300px;min-height:300px;perspective:1200px;cursor:pointer;border-radius:22px}
   .flip-inner{
     position:relative;width:100%;height:100%;
     transform-style:preserve-3d;
@@ -191,7 +191,7 @@
   }
   .face.back{
     align-items:flex-start;justify-content:center;gap:8px;
-    padding:26px 24px 20px;text-align:left;overflow:auto;
+    padding:26px 24px 44px;text-align:left;overflow:auto;
     transform:rotateY(180deg);
     background:linear-gradient(155deg,#FFFDF9 0%,#F5EFE4 100%);
   }
@@ -221,6 +221,10 @@
     font-size:15.5px;line-height:1.65;color:#4C443C;
   }
   .ex-cn{margin:0;font-size:13.5px;line-height:1.6;color:var(--sub)}
+
+  .selftest{display:flex;gap:8px;width:100%;margin-top:12px}
+  .selftest-btn{flex:1;min-height:44px;padding:0 10px;font-size:13.5px;border-radius:14px}
+  .selftest-btn.mix{color:#9C6B52;background:#FBEDE7;border-color:#E3B7A8}
 
   .word-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px}
   .ghost{
@@ -257,7 +261,7 @@
     -webkit-box-decoration-break:clone;box-decoration-break:clone;
   }
   .s-part{background:#D9E7CD;padding:1px 2px;margin:0 -2px}
-  .v-part{background:#F2CFBD;padding:1px 2px;margin:0 -2px;white-space:nowrap}
+  .v-part{background:#F2CFBD;padding:1px 2px;margin:0 -2px;overflow-wrap:break-word}
   .o-part{background:#F7E0AE;padding:1px 2px;margin:0 -2px}
   .c-part{background:#E9DDC7;padding:1px 2px;margin:0 -2px}
 
@@ -295,7 +299,7 @@
   .dot.v{background:var(--accent)}
   .dot.o{background:var(--sun)}
   .dot.c{background:#C9BBAA}
-  .ans-note{margin:8px 0 0;font-size:12.5px;line-height:1.65;color:var(--sub)}
+  .ans-note{margin:8px 0 0;font-size:14px;line-height:1.65;color:var(--sub)}
 
   /* ---------- 阅读 ---------- */
   .passage{
@@ -313,11 +317,11 @@
     font-size:17px;line-height:1.9;color:#3B342E;
   }
   .kw{
-    display:inline;margin:0 -1px;padding:1px 3px;font:inherit;color:inherit;
-    background:none;border:0;border-radius:6px;cursor:pointer;vertical-align:baseline;
+    display:inline-block;margin:2px 3px;padding:7px 9px;font:inherit;color:inherit;
+    background:none;border:0;border-radius:8px;cursor:pointer;vertical-align:baseline;
   }
   .kw.circled{color:var(--accent-deep);outline:2px solid var(--accent);outline-offset:2px}
-  .q-hint{margin:8px 0 0;font-size:12.5px;color:var(--sub)}
+  .q-hint{margin:8px 0 0;font-size:14px;color:var(--sub)}
 
   .options{display:grid;gap:9px;margin-top:12px}
   .opt{
@@ -337,7 +341,7 @@
   .opt.correct .badge{color:#5F7358;background:#D8E5D0}
   .opt.wrong{opacity:1;background:#FBEDE7;border-color:#E3B7A8}
   .opt.wrong .badge{color:#A9694F;background:#F3D9CE}
-  .trap-note{margin:10px 2px 0;font-size:12.5px;line-height:1.65;color:var(--sub)}
+  .trap-note{margin:10px 2px 0;font-size:14px;line-height:1.65;color:var(--sub)}
 
   /* ---------- 翻译 ---------- */
   .cn-sent{margin:2px 0 0;font-size:20px;font-weight:600;line-height:1.6;color:#3A332D}
@@ -348,7 +352,7 @@
   }
   .hint-box p{margin:0}
   .hint-line{font-size:15px;font-weight:600;line-height:1.5;color:#6B5344}
-  .hint-sub{margin-top:3px!important;font-size:12.5px;line-height:1.65;color:var(--sub)}
+  .hint-sub{margin-top:3px!important;font-size:14px;line-height:1.65;color:var(--sub)}
   .trans-input{
     display:block;width:100%;min-height:88px;margin-top:12px;padding:13px 14px;
     font-family:Georgia,"Iowan Old Style","Times New Roman",serif;
@@ -403,6 +407,21 @@
 
   .foot{padding:8px 4px 10px;text-align:center;font-size:11.5px;letter-spacing:.04em;color:var(--faint)}
 
+  /* ---------- 连续打卡 / 错题本 ---------- */
+  .streak{background:#FBF0D8;color:#9C7632}
+  .storage-tip{margin:8px 2px 0;font-size:12px;line-height:1.55;color:var(--faint)}
+  .wrong-list{display:grid;gap:10px;margin-top:12px}
+  .wrong-item{
+    padding:10px 12px;
+    background:rgba(255,255,255,.62);
+    border:1px solid rgba(214,193,160,.5);
+    border-radius:12px;
+  }
+  .wrong-meta{margin:0;font-size:11.5px;letter-spacing:.03em;color:#B99A6B}
+  .wrong-q{margin:4px 0 0;font-size:13.5px;line-height:1.65;color:#6B5330}
+  .wrong-a{margin:3px 0 0;font-size:13px;line-height:1.6;color:#8B7245}
+  .review-note{margin:0;font-size:14px;line-height:1.8;color:var(--sub)}
+
   @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
   @keyframes pop{from{opacity:0;transform:translateY(2px)}to{opacity:1;transform:none}}
 
@@ -448,11 +467,13 @@
         <button class="day-btn" id="d-next" type="button" aria-label="后一天">›</button>
       </div>
     </div>
-    <p class="lede">五个词是底线，其余算加分。做完就收工。</p>
+    <p class="lede">十个词是底线，其余算加分。做完就收工。</p>
     <div class="status-row">
-      <span class="checkin" id="checkin">今天还差 5 个词</span>
+      <span class="checkin" id="checkin">今天还差 10 个词</span>
+      <span class="checkin streak" id="streak">连续 1 天</span>
       <span class="theme-chip" id="day-theme"></span>
     </div>
+    <p class="storage-tip" id="storage-tip" hidden>记录只存在这台手机 / 浏览器里，清缓存会重置哦。</p>
     <nav class="steps" aria-label="四个模块">
       <a class="step" href="#m-word" data-step="word"><b>01</b>单词</a>
       <a class="step" href="#m-sentence" data-step="sentence"><b>02</b>长句</a>
@@ -462,6 +483,17 @@
   </header>
 
   <main>
+
+    <section class="card" id="m-review" hidden>
+      <div class="sec-head">
+        <span class="num">☕</span>
+        <div>
+          <h2>今天的任务看完了</h2>
+          <p>后面还没有新的任务包，去翻翻错题就好。</p>
+        </div>
+      </div>
+      <p class="review-note">今日任务已完成，去复习错题吧。想提前看看后面的日子，可以用上面的左右箭头。</p>
+    </section>
 
     <!-- 01 单词卡 -->
     <section class="card" id="m-word">
@@ -494,6 +526,10 @@
               <div class="meaning" id="w-mean">n. 食堂；（学校里的）餐厅</div>
               <p class="ex-en" id="w-en" lang="en">I grab breakfast at the canteen before the first class.</p>
               <p class="ex-cn" id="w-cn">第一节课前我在食堂随便吃点。</p>
+              <div class="selftest">
+                <button class="pill selftest-btn" id="btn-remembered" type="button">记住了 ✅</button>
+                <button class="pill selftest-btn mix" id="btn-practice" type="button">有点混，再练练 ❌</button>
+              </div>
               <div class="hint">再点一下，翻回去</div>
             </div>
           </div>
@@ -611,7 +647,16 @@
     <p class="note-ex" id="note-ex"></p>
   </details>
 
-  <footer class="foot">五个词看完就算今天完成，其余随缘。</footer>
+  <details class="note wrongbook" id="wrongbook">
+    <summary>
+      <span class="note-tag">错题本</span>
+      <span class="note-title" id="wrong-title">还空着</span>
+      <span class="note-more"></span>
+    </summary>
+    <div class="wrong-list" id="wrong-list"></div>
+  </details>
+
+  <footer class="foot">十个词看完就算今天完成，其余随缘。</footer>
 </div>
 
 <script>
@@ -621,11 +666,26 @@
   var $ = function (sel, root) { return (root || document).querySelector(sel); };
   var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
 
+  var START_KEY = 'dsh-en-start';
+  var TOUCH_KEY = 'dsh-en-touched';
+  var DONE_KEY = 'dsh-en-modules';
+  var WRONG_KEY = 'dsh-en-wrong';
+  var STREAK_KEY = 'dsh-en-streak';
+  var WELCOME_KEY = 'dsh-en-welcomed';
+  var MASTER_KEY = 'dsh-en-mastered';
+
+  function isPlainObject(v) {
+    return !!v && typeof v === 'object' && !Array.isArray(v);
+  }
+
   var store = {
-    read: function (key, fallback) {
+    read: function (key, fallback, check) {
       try {
         var raw = window.localStorage.getItem(key);
-        return raw ? JSON.parse(raw) : fallback;
+        if (!raw) return fallback;
+        var value = JSON.parse(raw);
+        if (check && !check(value)) return fallback;
+        return value;
       } catch (err) { return fallback; }
     },
     write: function (key, value) {
@@ -633,23 +693,79 @@
     }
   };
 
-  var START_KEY = 'dsh-en-start';
-  var TOUCH_KEY = 'dsh-en-touched';
-  var DONE_KEY = 'dsh-en-modules';
-
-  var touched = store.read(TOUCH_KEY, {});   // { "1": [0,1,2] }
-  var modules = store.read(DONE_KEY, {});    // { "1": { word: true, sentence: true, ... } }
-
-  var dayToday = new Date();
-  var dayStart = new Date(dayToday.getFullYear(), dayToday.getMonth(), dayToday.getDate());
-  var startRaw = store.read(START_KEY, '');
-  var startDay = startRaw ? new Date(startRaw) : dayStart;
-  if (!startRaw || isNaN(startDay.getTime())) {
-    startDay = dayStart;
-    store.write(START_KEY, dayStart.toISOString());
+  function checkTouched(v) {
+    return isPlainObject(v) && Object.keys(v).every(function (k) {
+      return Array.isArray(v[k]) && v[k].every(function (i) {
+        return typeof i === 'number' && i >= 0 && i < 20;
+      });
+    });
   }
-  var autoDay = Math.floor((dayStart - startDay) / 86400000) + 1;
-  autoDay = Math.min(7, Math.max(1, autoDay));
+
+  function checkModules(v) {
+    return isPlainObject(v) && Object.keys(v).every(function (k) { return isPlainObject(v[k]); });
+  }
+
+  function checkWrong(v) {
+    return Array.isArray(v) && v.every(function (item) {
+      return isPlainObject(item) && typeof item.type === 'string' && typeof item.date === 'string';
+    });
+  }
+
+  function checkStreak(v) {
+    return isPlainObject(v) && typeof v.last === 'string' && typeof v.days === 'number' && v.days >= 0;
+  }
+
+  var touched = store.read(TOUCH_KEY, {}, checkTouched);
+  var modules = store.read(DONE_KEY, {}, checkModules);
+  var wrongBook = store.read(WRONG_KEY, [], checkWrong);
+  var streak = store.read(STREAK_KEY, null, checkStreak);
+  var mastered = store.read(MASTER_KEY, {}, isPlainObject);
+  var showStorageTip = false;
+
+  var todayMs = dayStartOf(new Date());
+
+  function dayStartOf(d) {
+    return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  }
+
+  function dateKey(d) {
+    var m = d.getMonth() + 1;
+    var dd = d.getDate();
+    return d.getFullYear() + '-' + (m < 10 ? '0' : '') + m + '-' + (dd < 10 ? '0' : '') + dd;
+  }
+
+  var startRaw = store.read(START_KEY, '');
+  var startMs = startRaw ? new Date(startRaw) : todayMs;
+  if (!startRaw || isNaN(startMs.getTime())) {
+    startMs = todayMs;
+    store.write(START_KEY, todayMs.toISOString());
+  }
+
+  function dayNumberFor(ms) {
+    return Math.floor((ms - startMs) / 86400000) + 1;
+  }
+
+  var autoDay = Math.max(1, dayNumberFor(todayMs));
+
+  // 连续打卡：只看最后一次来的日期。昨天来过就 +1，断了就从 1 重新开始，不做任何「中断」提示。
+  (function initStreak() {
+    var today = dateKey(todayMs);
+    if (streak && typeof streak.last === 'string') {
+      if (streak.last !== today) {
+        var lastMs = new Date(streak.last + 'T00:00:00');
+        var gap = isNaN(lastMs.getTime()) ? 999 : Math.round((todayMs - lastMs) / 86400000);
+        streak = { last: today, days: gap === 1 ? streak.days + 1 : 1 };
+        store.write(STREAK_KEY, streak);
+      }
+    } else {
+      streak = { last: today, days: 1 };
+      store.write(STREAK_KEY, streak);
+      if (!store.read(WELCOME_KEY, false)) {
+        store.write(WELCOME_KEY, true);
+        showStorageTip = true;
+      }
+    }
+  })();
 
   function w(word, phonetic, meaning, example_en, example_cn, life_tag) {
     return { word: word, phonetic: phonetic, meaning: meaning, example_en: example_en, example_cn: example_cn, life_tag: life_tag };
@@ -664,7 +780,12 @@
         w('grab', '/ɡræb/', 'v. 抓住；匆忙地拿/吃', "Let's grab a quick lunch between classes.", '课间我们赶紧吃个午饭。', '食堂'),
         w('queue', '/kjuː/', 'n. 队伍；v. 排队', "There's always a long queue at the noodle window.", '面食窗口永远排着长队。', '食堂'),
         w('tray', '/treɪ/', 'n. 托盘', 'I left my tray on the table by mistake.', '我不小心把托盘落在桌子上了。', '食堂'),
-        w('refill', '/ˌriːˈfɪl/', 'v. 续杯；重新装满', 'You can get a free refill of water here.', '这里的水可以免费续。', '食堂')
+        w('refill', '/ˌriːˈfɪl/', 'v. 续杯；重新装满', 'You can get a free refill of water here.', '这里的水可以免费续。', '食堂'),
+        w('menu', '/ˈmenjuː/', 'n. 菜单', 'The menu is on the wall next to the window.', '菜单贴在窗户旁边的墙上。', '食堂'),
+        w('napkin', '/ˈnæpkɪn/', 'n. 餐巾纸；餐巾', 'Could you pass me a napkin?', '能递我一张餐巾纸吗？', '食堂'),
+        w('spicy', '/ˈspaɪsi/', 'adj. 辣的', 'The noodles at window three are really spicy.', '三号窗口的面特别辣。', '食堂'),
+        w('leftover', '/ˈleftəʊvə(r)/', 'n. 剩饭；adj. 剩下的', 'I put the leftovers in the fridge last night.', '昨晚我把剩饭放进冰箱了。', '食堂'),
+        w('dish', '/dɪʃ/', 'n. 一道菜；盘子', 'This dish is only eight yuan today.', '这道菜今天只要八块。', '食堂')
       ],
       long: {
         en: 'The canteen near our dorm serves cheap noodles that students love.',
@@ -715,7 +836,12 @@
         w('cozy', '/ˈkəʊzi/', 'adj. 舒适温馨的', 'Our dorm is small but cozy.', '我们宿舍不大，但挺温馨。', '宿舍'),
         w('messy', '/ˈmesi/', 'adj. 凌乱的', 'My desk gets messy after a busy week.', '忙完一周，我的书桌就乱了。', '宿舍'),
         w('tidy', '/ˈtaɪdi/', 'adj. 整洁的；v. 整理', 'She keeps her side of the room tidy.', '她把自己那半边房间收拾得很整齐。', '宿舍'),
-        w('noisy', '/ˈnɔɪzi/', 'adj. 吵的', 'The corridor is noisy on weekend nights.', '周末晚上走廊很吵。', '宿舍')
+        w('noisy', '/ˈnɔɪzi/', 'adj. 吵的', 'The corridor is noisy on weekend nights.', '周末晚上走廊很吵。', '宿舍'),
+        w('lamp', '/læmp/', 'n. 台灯；灯', 'We leave the warm lamp on until midnight.', '我们把暖灯开到半夜。', '宿舍'),
+        w('pillow', '/ˈpɪləʊ/', 'n. 枕头', 'My pillow is too soft to fall asleep on.', '我的枕头太软，睡不着。', '宿舍'),
+        w('curtain', '/ˈkɜːtn/', 'n. 窗帘', 'Pull the curtain if the light bothers you.', '光晃眼的话就把窗帘拉上。', '宿舍'),
+        w('drawer', '/drɔː(r)/', 'n. 抽屉', 'The snacks are in the top drawer.', '零食在最上面那个抽屉里。', '宿舍'),
+        w('bunk', '/bʌŋk/', 'n. 上下铺', 'She sleeps on the top bunk and I take the lower one.', '她睡上铺，我睡下铺。', '宿舍')
       ],
       long: {
         en: 'Our dorm is small, but the corner by the window is very cozy.',
@@ -766,7 +892,12 @@
         w('browse', '/braʊz/', 'v. 浏览', 'She browses the shop every night but rarely buys anything.', '她每晚逛网店，但很少买。', '刷手机'),
         w('post', '/pəʊst/', 'v. 发布；n. 帖子', 'He posts a photo of his lunch almost every day.', '他几乎每天发午饭照片。', '刷手机'),
         w('trend', '/trend/', 'n. 潮流；趋势', 'This dance is a big trend on campus.', '这个舞在校园里很火。', '刷手机'),
-        w('screen', '/skriːn/', 'n. 屏幕', 'I try to keep my screen time under two hours.', '我尽量把屏幕时间控制在两小时以内。', '刷手机')
+        w('screen', '/skriːn/', 'n. 屏幕', 'I try to keep my screen time under two hours.', '我尽量把屏幕时间控制在两小时以内。', '刷手机'),
+        w('feed', '/fiːd/', 'n. 信息流；v. 喂养', 'My feed is full of campus photos.', '我的信息流全是校园照片。', '刷手机'),
+        w('notification', '/ˌnəʊtɪfɪˈkeɪʃn/', 'n. 通知；推送', 'I turned off notifications before the exam.', '考试前我把通知全关了。', '刷手机'),
+        w('charge', '/tʃɑːdʒ/', 'v. 充电；n. 费用', 'My phone needs charging again.', '我手机又要充电了。', '刷手机'),
+        w('unlock', '/ˌʌnˈlɒk/', 'v. 解锁；打开', 'She unlocks her phone every two minutes.', '她两分钟就解锁一次手机。', '刷手机'),
+        w('battery', '/ˈbætəri/', 'n. 电池；电量', 'The battery dies fast when I watch videos.', '一看视频，电量掉得飞快。', '刷手机')
       ],
       long: {
         en: 'Many students scroll their phones for an hour before they finally go to sleep.',
@@ -817,7 +948,12 @@
         w('refund', '/ˈriːfʌnd/', 'n. 退款；v. 退还', 'I asked for a refund the next day.', '第二天我就申请了退款。', '淘宝'),
         w('return', '/rɪˈtɜːn/', 'v. 退回；返回', 'It costs nothing to return the shoes.', '退这双鞋不用花钱。', '淘宝'),
         w('wrong', '/rɒŋ/', 'adj. 错的；不合适的', 'The size was wrong, so I sent them back.', '尺码不对，我就把它们退回去了。', '淘宝'),
-        w('arrive', '/əˈraɪv/', 'v. 到达', 'The parcel arrived two days later.', '包裹两天后到了。', '快递')
+        w('arrive', '/əˈraɪv/', 'v. 到达', 'The parcel arrived two days later.', '包裹两天后到了。', '快递'),
+        w('size', '/saɪz/', 'n. 尺码；大小', 'The size chart says I need a medium.', '尺码表上说我得穿 M。', '淘宝'),
+        w('parcel', '/ˈpɑːsl/', 'n. 包裹；快递', 'The parcel arrived in a huge box.', '包裹装在一个大箱子里寄到了。', '快递'),
+        w('exchange', '/ɪksˈtʃeɪndʒ/', 'v. 换货；交换', 'You can exchange it for a bigger size.', '可以换来大一号的。', '淘宝'),
+        w('shipping', '/ˈʃɪpɪŋ/', 'n. 运费；配送', 'Shipping is free if you buy two.', '买两件免运费。', '淘宝'),
+        w('try', '/traɪ/', 'v. 试穿；尝试', 'Can I try them on before I pay?', '付款前我能试穿吗？', '淘宝')
       ],
       long: {
         en: "The parcel arrived on Monday, but the shoes were the wrong size, so I returned them and asked for a refund.",
@@ -868,7 +1004,12 @@
         w('borrow', '/ˈbɒrəʊ/', 'v. 借（入）', 'Can I borrow this book for two weeks?', '这本书我能借两周吗？', '图书馆'),
         w('overdue', '/ˌəʊvəˈdjuː/', 'adj. 过期的；逾期的', 'My book is two days overdue.', '我的书逾期两天了。', '图书馆'),
         w('seat', '/siːt/', 'n. 座位', 'There are no seats left on the third floor.', '三楼没有空座位了。', '图书馆'),
-        w('quiet', '/ˈkwaɪət/', 'adj. 安静的', 'Please keep quiet in the reading room.', '阅览室里请保持安静。', '图书馆')
+        w('quiet', '/ˈkwaɪət/', 'adj. 安静的', 'Please keep quiet in the reading room.', '阅览室里请保持安静。', '图书馆'),
+        w('fine', '/faɪn/', 'n. 罚款；adj. 好的', 'There is a fine for overdue books.', '逾期还书要交罚款。', '图书馆'),
+        w('renew', '/rɪˈnjuː/', 'v. 续借；更新', 'I renewed the book online for another week.', '我在网上把书续借了一周。', '图书馆'),
+        w('shelf', '/ʃelf/', 'n. 书架', 'The novel you want is on the third shelf.', '你要的小说在第三个书架上。', '图书馆'),
+        w('search', '/sɜːtʃ/', 'v./n. 搜索；查找', 'Search the title before you walk around.', '先搜一下书名再到处走。', '图书馆'),
+        w('copy', '/ˈkɒpi/', 'n. 一本；复印件；v. 复印', 'I made a copy of the article for you.', '我帮你把文章复印了一份。', '图书馆')
       ],
       long: {
         en: 'There are only a few seats left in the library, and the quiet room closes at ten.',
@@ -919,7 +1060,12 @@
         w('group', '/ɡruːp/', 'n. 小组；群体', 'Our group meets every Tuesday.', '我们小组每周二碰头。', '作业'),
         w('divide', '/dɪˈvaɪd/', 'v. 分配；分开', 'We divided the work into four parts.', '我们把工作分成了四份。', '作业'),
         w('submit', '/səbˈmɪt/', 'v. 提交', 'Please submit your file before noon.', '请在中午前提交文件。', '作业'),
-        w('hurry', '/ˈhʌri/', 'v. 赶快；匆忙', 'We had to hurry to finish it.', '我们得赶紧才能做完。', '作业')
+        w('hurry', '/ˈhʌri/', 'v. 赶快；匆忙', 'We had to hurry to finish it.', '我们得赶紧才能做完。', '作业'),
+        w('draft', '/drɑːft/', 'n. 草稿；v. 起草', 'Send me the draft before Wednesday.', '周三前把草稿发我。', '作业'),
+        w('revise', '/rɪˈvaɪz/', 'v. 修改；复习', 'We revised the report twice.', '报告我们改了两遍。', '作业'),
+        w('present', '/prɪˈzent/', 'v. 展示；陈述', 'Each of us has to present one part.', '我们每人都要讲一部分。', '作业'),
+        w('feedback', '/ˈfiːdbæk/', 'n. 反馈', 'The teacher gave us helpful feedback.', '老师给了我们很有用的反馈。', '作业'),
+        w('teamwork', '/ˈtiːmwɜːk/', 'n. 团队合作', 'Good teamwork saved us a lot of time.', '合作得好，省了我们很多时间。', '作业')
       ],
       long: {
         en: 'Our group must submit the project before Friday, so we should divide the work tonight.',
@@ -970,7 +1116,12 @@
         w('chat', '/tʃæt/', 'v. 聊天；n. 闲谈', 'We chat for an hour before bed.', '我们睡前会聊一小时。', '聊天'),
         w('habit', '/ˈhæbɪt/', 'n. 习惯', 'Reading before sleep is a good habit.', '睡前看书是个好习惯。', '日常'),
         w('snack', '/snæk/', 'n. 零食', 'We always keep some snacks in the drawer.', '我们抽屉里总放着零食。', '零食'),
-        w('midnight', '/ˈmɪdnaɪt/', 'n. 午夜；半夜十二点', 'The corridor is quiet after midnight.', '过了午夜，走廊就安静了。', '作息')
+        w('midnight', '/ˈmɪdnaɪt/', 'n. 午夜；半夜十二点', 'The corridor is quiet after midnight.', '过了午夜，走廊就安静了。', '作息'),
+        w('share', '/ʃeə(r)/', 'v. 分享；n. 份额', 'We share snacks and homework tips.', '我们分享零食，也分享作业经验。', '室友'),
+        w('argue', '/ˈɑːɡjuː/', 'v. 争论；争吵', 'We argued about who should clean the room.', '我们为谁打扫房间吵了一架。', '室友'),
+        w('respect', '/rɪˈspekt/', 'v./n. 尊重', "Good roommates respect each other's sleep.", '好室友会尊重彼此的睡眠。', '室友'),
+        w('lend', '/lend/', 'v. 借出', 'Can you lend me your charger?', '能借我一下充电器吗？', '室友'),
+        w('gossip', '/ˈɡɒsɪp/', 'n. 八卦；v. 说闲话', 'We gossip about the same things every night.', '我们每晚聊同样的八卦。', '室友')
       ],
       long: {
         en: 'The roommate who shares the desk with me has a habit of chatting until midnight.',
@@ -1020,7 +1171,8 @@
   var located = false;
 
   function touchList(d) {
-    return touched[String(d)] || [];
+    var arr = touched[String(d)];
+    return Array.isArray(arr) ? arr : [];
   }
 
   function markTouched(d, idx) {
@@ -1044,9 +1196,74 @@
     syncSteps();
   }
 
+  /* ---------------- 错题本 ---------------- */
+  function addWrong(entry) {
+    var dup = wrongBook.some(function (w) {
+      if (entry.type === 'word' && w.type === 'word') {
+        return w.day === entry.day && w.word === entry.word;
+      }
+      return w.type === entry.type && w.day === entry.day && w.yours === entry.yours;
+    });
+    if (dup) return;
+    entry.date = dateKey(todayMs);
+    wrongBook.unshift(entry);
+    if (wrongBook.length > 60) wrongBook = wrongBook.slice(0, 60);
+    store.write(WRONG_KEY, wrongBook);
+    renderWrongBook();
+  }
+
+  function esc(text) {
+    return String(text == null ? '' : text).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function renderWrongBook() {
+    var box = $('#wrong-list');
+    var title = $('#wrong-title');
+    if (!box || !title) return;
+    if (!wrongBook.length) {
+      title.textContent = '还空着，暂时没有错题';
+      box.innerHTML = '<p class="wrong-q">答错的题会记在这里，过几天回来看一眼就好。</p>';
+      return;
+    }
+    title.textContent = '共 ' + wrongBook.length + ' 条';
+    box.innerHTML = wrongBook.slice(0, 20).map(function (item) {
+      var kind = item.type === 'word' ? '单词自测' : (item.type === 'read' ? '阅读' : '翻译');
+      var meta = 'Day ' + item.day + ' · ' + item.date + ' · ' + kind;
+      var asked, yours, answer;
+      if (item.type === 'word') {
+        asked = '单词：' + (item.word || '') + ' ' + (item.phonetic || '');
+        yours = '释义：' + (item.meaning || '');
+        answer = '再碰到它，先自己想一想意思。';
+      } else if (item.type === 'read') {
+        asked = '题目：' + item.q;
+        yours = '你选了：' + item.yours;
+        answer = '正确答案：' + item.answer;
+      } else {
+        asked = '中文：' + item.cn;
+        yours = '你写的：' + item.yours;
+        answer = '参考写法：' + item.answer;
+      }
+      return '<div class="wrong-item">'
+        + '<p class="wrong-meta">' + esc(meta) + '</p>'
+        + '<p class="wrong-q">' + esc(asked) + '</p>'
+        + '<p class="wrong-a">' + esc(yours) + '</p>'
+        + '<p class="wrong-a">' + esc(answer) + '</p>'
+        + '</div>';
+    }).join('');
+  }
+
   function syncSteps() {
+    if (!DAYS[day - 1]) {
+      var reviewChip = $('#checkin');
+      reviewChip.textContent = '今天碰了英语 ✅';
+      reviewChip.classList.add('ok');
+      return;
+    }
     var m = dayModules(day);
-    var touchedAll = touchList(day).length >= 5;
+    var total = DAYS[day - 1].words.length;
+    var touchedAll = touchList(day).length >= total;
     var status = {
       word: touchedAll,
       sentence: !!m.sentence,
@@ -1061,7 +1278,7 @@
       chip.textContent = '今天碰了英语 ✅';
       chip.classList.add('ok');
     } else {
-      var left = 5 - touchList(day).length;
+      var left = total - touchList(day).length;
       chip.textContent = '今天还差 ' + left + ' 个词';
       chip.classList.remove('ok');
     }
@@ -1080,8 +1297,9 @@
   function renderDots() {
     var box = $('#wdots');
     var arr = touchList(day);
+    var total = DAYS[day - 1] ? DAYS[day - 1].words.length : 10;
     box.innerHTML = '';
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < total; i++) {
       var dot = document.createElement('span');
       dot.className = 'wdot' + (arr.indexOf(i) !== -1 ? ' on' : '');
       box.appendChild(dot);
@@ -1094,6 +1312,22 @@
     flip.setAttribute('aria-pressed', on ? 'true' : 'false');
     $('#face-front').setAttribute('aria-hidden', on ? 'true' : 'false');
     $('#face-back').setAttribute('aria-hidden', on ? 'false' : 'true');
+  }
+
+  // 背面内容长短不一：量一下真实高度，把卡片从固定 300px 放开（最低仍保 300px）。
+  function fitCard() {
+    var flip = $('#flip');
+    var back = $('#face-back');
+    if (!flip || !back) return;
+    var width = flip.getBoundingClientRect().width;
+    if (!width) return;
+    var probe = back.cloneNode(true);
+    probe.removeAttribute('id');
+    probe.style.cssText = 'position:static;height:auto;width:' + width + 'px;visibility:hidden;overflow:visible;';
+    document.body.appendChild(probe);
+    var height = probe.offsetHeight;
+    document.body.removeChild(probe);
+    flip.style.height = Math.max(300, height) + 'px';
   }
 
   function currentWord() {
@@ -1111,6 +1345,7 @@
     $('#w-count').textContent = '今天碰了 ' + touchList(day).length + ' 个词';
     $('#flip').setAttribute('aria-label', '翻转单词卡：' + item.word);
     setFlip(false);
+    fitCard();
     if (window.speechSynthesis) window.speechSynthesis.cancel();
   }
 
@@ -1195,6 +1430,24 @@
 
   function renderDay() {
     var data = DAYS[day - 1];
+    var reviewCard = $('#m-review');
+    var steps = document.querySelector('.steps');
+    var sections = ['#m-word', '#m-sentence', '#m-read', '#m-trans'];
+
+    if (!data) {
+      sections.forEach(function (sel) { var el = $(sel); if (el) el.hidden = true; });
+      if (reviewCard) reviewCard.hidden = false;
+      if (steps) steps.hidden = true;
+      $('#day-title').textContent = 'DAY ' + day;
+      $('#day-theme').textContent = '今天：复习日';
+      if (window.speechSynthesis) window.speechSynthesis.cancel();
+      syncSteps();
+      return;
+    }
+
+    sections.forEach(function (sel) { var el = $(sel); if (el) el.hidden = false; });
+    if (reviewCard) reviewCard.hidden = true;
+    if (steps) steps.hidden = false;
     $('#day-title').textContent = 'DAY ' + data.day;
     $('#day-theme').textContent = '今天：' + data.theme;
     wi = 0;
@@ -1266,13 +1519,49 @@
   });
 
   function moveWord(delta) {
-    wi = (wi + delta + 5) % 5;
+    var total = DAYS[day - 1] ? DAYS[day - 1].words.length : 1;
+    wi = (wi + delta + total) % total;
     renderWord();
-    say('word', '换一个，慢慢看');
   }
 
-  $('#w-prev').addEventListener('click', function () { moveWord(-1); });
-  $('#w-next').addEventListener('click', function () { moveWord(1); });
+  $('#w-prev').addEventListener('click', function () {
+    moveWord(-1);
+    say('word', '换一个，慢慢看');
+  });
+
+  $('#w-next').addEventListener('click', function () {
+    moveWord(1);
+    say('word', '换一个，慢慢看');
+  });
+
+  function currentWordId() {
+    var item = currentWord();
+    return day + '-' + item.word;
+  }
+
+  $('#btn-remembered').addEventListener('click', function (e) {
+    e.stopPropagation();
+    mastered[currentWordId()] = true;
+    store.write(MASTER_KEY, mastered);
+    moveWord(1);
+    say('word', '记住了，下一个');
+  });
+
+  $('#btn-practice').addEventListener('click', function (e) {
+    e.stopPropagation();
+    var item = currentWord();
+    addWrong({
+      type: 'word',
+      day: day,
+      word: item.word,
+      phonetic: item.phonetic,
+      meaning: item.meaning,
+      yours: '',
+      answer: ''
+    });
+    moveWord(1);
+    say('word', '没关系，明天再碰它');
+  });
 
   /* ---------------- 长难句 ---------------- */
   $('#btn-pred').addEventListener('click', function () {
@@ -1392,6 +1681,14 @@
     }
     $$('.opt', this).forEach(function (o) { o.classList.remove('correct'); });
     opt.classList.add('wrong');
+    var rightOpt = document.querySelector('.opt[data-correct="1"]');
+    addWrong({
+      type: 'read',
+      day: day,
+      q: $('#q') ? $('#q').textContent : '',
+      yours: opt.getAttribute('data-opt') + '. ' + (opt.querySelector('.opt-text') ? opt.querySelector('.opt-text').textContent : ''),
+      answer: rightOpt ? rightOpt.getAttribute('data-opt') + '. ' + (rightOpt.querySelector('.opt-text') ? rightOpt.querySelector('.opt-text').textContent : '') : ''
+    });
     say('read', opt.getAttribute('data-msg') || '再看一眼原文');
     window.setTimeout(function () { opt.classList.remove('wrong'); }, 1000);
   });
@@ -1431,11 +1728,13 @@
     markModule(day, 'trans');
 
     if (parts.length < 4) {
-      say('trans', '试着把主谓宾写全：谁 + 不想做什么 + 时间');
+      say('trans', '试着把主谓宾写全');
+      addWrong({ type: 'trans', day: day, cn: data.cn, yours: raw, answer: data.ref });
       return;
     }
     if (used.length < 2) {
       say('trans', '意思有了，再把今天的词用上两个就更扎实');
+      addWrong({ type: 'trans', day: day, cn: data.cn, yours: raw, answer: data.ref });
       return;
     }
     say('trans', '成了，这句能站住');
@@ -1449,19 +1748,43 @@
 
   /* ---------------- 日期 / 换天 ---------------- */
   $('#d-prev').addEventListener('click', function () {
-    day = Math.max(1, day - 1);
+    if (!DAYS[day - 1]) day = DAYS.length;
+    else day = Math.max(1, day - 1);
     renderDay();
-    say('word', day === autoDay ? '回到今天了' : '往前翻，不扣分');
+    say('word', day === autoDay ? '回到今天了' : '每一天都是独立的，随时可以开始');
   });
 
   $('#d-next').addEventListener('click', function () {
-    day = Math.min(7, day + 1);
+    if (day < DAYS.length) day += 1;
+    else if (autoDay > DAYS.length) day = autoDay;
     renderDay();
     say('word', day === autoDay ? '回到今天了' : '后面的日子也可以先看看');
   });
 
+  // 中途挂机、过了午夜再切回来：重新算一次「今天」，别把昨天的进度记成今天。
+  var lastAuto = autoDay;
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState !== 'visible') return;
+    todayMs = dayStartOf(new Date());
+    var nextAuto = Math.max(1, dayNumberFor(todayMs));
+    if (nextAuto === lastAuto) return;
+    var wasOnAuto = day === lastAuto;
+    lastAuto = nextAuto;
+    autoDay = nextAuto;
+    if (wasOnAuto) {
+      day = autoDay;
+      renderDay();
+      say('word', '新的一天，从这几个词开始');
+    }
+  });
+
+  renderWrongBook();
   renderDay();
   syncSteps();
+  $('#streak').textContent = '连续 ' + (streak && streak.days ? streak.days : 1) + ' 天';
+  if (showStorageTip) $('#storage-tip').hidden = false;
+
+  window.addEventListener('resize', function () { fitCard(); });
 
   window.addEventListener('pagehide', function () {
     if (window.speechSynthesis) window.speechSynthesis.cancel();
